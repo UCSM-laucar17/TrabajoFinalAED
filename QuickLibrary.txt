@@ -3,31 +3,25 @@ QuickLibrary
 │   ├── Libro
 │   ├── SolicitudPrestamo
 │   └── Prestamo
-│
 ├── estructuras
 │   ├── Nodo
 │   ├── ColaGenerica
 │   ├── PilaGenerica
 │   ├── NodoAVL
 │   └── ArbolAVL
-│
 ├── servicios
 │   ├── Biblioteca
 │   ├── GestorPrestamos
 │   └── GestorArchivos
-│
 ├── interfaz
 │   ├── VentanaPrincipal
 │   ├── PanelLibros
 │   ├── PanelPrestamos
 │   └── PanelReportes
-│
 ├── reportes
 │   └── ExportadorReportes
-│
 ├── test
 │   ├── AVLTest
 │   ├── ColaTest
 │   └── PrestamoTest
-│
 └── Main
