@@ -1,7 +1,7 @@
 # TrabajoFinalAED
 Integrantes:
-Arce Quispe, Alexandra Vanesa
-Begazo Sullca, Shanella Rosita
-Carrizales Arenas, Jazmin Aracely 
-Dávalos Tecssi, Diago Eduardo
-Gómez Carbajal, Laura Elena
+Alexandra Vanesa Arce Quispe,
+Shanella Rosita Begazo Sullca,
+Jazmin Aracely Carrizales Arenas,
+Diago Eduardo Dávalos Tecssi,
+Laura ElenaGómez Carbajal
