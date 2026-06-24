@@ -103,4 +103,18 @@ public class ArbolAVL<T extends Comparable<T>> {
 
         return balancear(nodo);
     }
-    
+    // Buscar
+
+    public T buscar(T dato) {
+        return buscar(raiz, dato);
+    }
+
+    private T buscar(NodoAVL<T> nodo, T dato) {
+        if (nodo == null) return null;
+
+        int cmp = dato.compareTo(nodo.dato);
+
+        if (cmp < 0) return buscar(nodo.izquierdo, dato);
+        if (cmp > 0) return buscar(nodo.derecho, dato);
+        return nodo.dato;
+    }
