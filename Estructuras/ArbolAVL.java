@@ -85,5 +85,22 @@ public class ArbolAVL<T extends Comparable<T>> {
         return nodo;
     }
     // Insertar
-    
+    public void insertar(T dato) {
+        raiz = insertar(raiz, dato);
+    }
+
+    private NodoAVL<T> insertar(NodoAVL<T> nodo, T dato) {
+        if (nodo == null) return new NodoAVL<>(dato);
+
+        int cmp = dato.compareTo(nodo.dato);
+
+        if (cmp < 0)
+            nodo.izquierdo = insertar(nodo.izquierdo, dato);
+        else if (cmp > 0)
+            nodo.derecho = insertar(nodo.derecho, dato);
+        else
+            return nodo; // código duplicado, no se inserta
+
+        return balancear(nodo);
+    }
     
