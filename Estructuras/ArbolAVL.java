@@ -155,4 +155,9 @@ public class ArbolAVL<T extends Comparable<T>> {
         postOrden(nodo.derecho);
         System.out.print(nodo.dato + "  ");
     }
+
+    //mostrar
+    public void mostrar() {
+
+    
     
