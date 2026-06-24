@@ -178,5 +178,30 @@ public class ArbolAVL<T extends Comparable<T>> {
         mostrarInOrden(raiz);
     }
 
+    private void mostrarInOrden(NodoAVL<T> nodo) {
+        if (nodo == null) return;
+        mostrarInOrden(nodo.izquierdo);
+        System.out.println("  " + nodo.dato);
+        mostrarInOrden(nodo.derecho);
+    }
+
+    // Contar y vacío
+    public int contar() 
+    {
+        return contar(raiz);
+    }
+
+    private int contar(NodoAVL<T> nodo) 
+    {
+        if (nodo == null) return 0;
+        return 1 + contar(nodo.izquierdo) + contar(nodo.derecho);
+    }
+
+    public boolean estaVacio() 
+    {
+        return raiz == null;
+    }
+}
+
     
     
