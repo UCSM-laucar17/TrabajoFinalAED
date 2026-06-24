@@ -118,3 +118,41 @@ public class ArbolAVL<T extends Comparable<T>> {
         if (cmp > 0) return buscar(nodo.derecho, dato);
         return nodo.dato;
     }
+
+    //Recorridos
+    public void inOrden() {
+        inOrden(raiz);
+        System.out.println();
+    }
+
+    private void inOrden(NodoAVL<T> nodo) {
+        if (nodo == null) return;
+        inOrden(nodo.izquierdo);
+        System.out.print(nodo.dato + "  ");
+        inOrden(nodo.derecho);
+    }
+
+    public void preOrden() {
+        preOrden(raiz);
+        System.out.println();
+    }
+
+    private void preOrden(NodoAVL<T> nodo) {
+        if (nodo == null) return;
+        System.out.print(nodo.dato + "  ");
+        preOrden(nodo.izquierdo);
+        preOrden(nodo.derecho);
+    }
+
+    public void postOrden() {
+        postOrden(raiz);
+        System.out.println();
+    }
+
+    private void postOrden(NodoAVL<T> nodo) {
+        if (nodo == null) return;
+        postOrden(nodo.izquierdo);
+        postOrden(nodo.derecho);
+        System.out.print(nodo.dato + "  ");
+    }
+    
