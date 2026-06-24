@@ -1,18 +1,15 @@
 package Estructuras;
 
 public class PilaGenerica<E> {
-
     private Object[] arreglo;
     private int top;
     private int capacidad;
     private static final int CAPACIDAD_INICIAL = 100;
-
     public PilaGenerica() {
         this.capacidad = CAPACIDAD_INICIAL;
         this.arreglo = new Object[capacidad];
         this.top = -1;
     }
-
     // Insertar en el tope
     public void push(E data) {
         if (top == capacidad - 1) {
@@ -20,7 +17,6 @@ public class PilaGenerica<E> {
         }
         arreglo[++top] = data;
     }
-
     // Retirar del tope
     @SuppressWarnings("unchecked")
     public E pop() throws ExcepcionVacia {
@@ -30,22 +26,18 @@ public class PilaGenerica<E> {
         top--;
         return data;
     }
-
     // Ver el tope sin retirarlo
     @SuppressWarnings("unchecked")
     public E peek() throws ExcepcionVacia {
         if (isEmpty()) throw new ExcepcionVacia("Pila vacía, nada que consultar.");
         return (E) arreglo[top];
     }
-
     public boolean isEmpty() {
         return top == -1;
     }
-
     public int size() {
         return top + 1;
     }
-
     public void mostrar() {
         if (isEmpty()) {
             System.out.println("  La pila está vacía.");
@@ -56,7 +48,6 @@ public class PilaGenerica<E> {
             System.out.println("  [" + (top - i + 1) + "] " + arreglo[i]);
         }
     }
-
     // Redimensionar si se llena el arreglo
     private void redimensionar() {
         capacidad *= 2;
