@@ -1,8 +1,10 @@
 package estructuras;
 
-public class ArbolAVL<T extends Comparable<T>> {
+public class ArbolAVL<T extends Comparable<T>> 
+{
     private NodoAVL<T> raiz;
-    public ArbolAVL() {
+    public ArbolAVL() 
+    {
         this.raiz = null;
     }
     // Altura y balance
@@ -11,11 +13,13 @@ public class ArbolAVL<T extends Comparable<T>> {
         if (nodo == null) return 0;
         return nodo.altura;
     }
-    private int obtenerBalance(NodoAVL<T> nodo) {
+    private int obtenerBalance(NodoAVL<T> nodo) 
+    {
         if (nodo == null) return 0;
         return obtenerAltura(nodo.izquierdo) - obtenerAltura(nodo.derecho);
     }
-    private void actualizarAltura(NodoAVL<T> nodo) {
+    private void actualizarAltura(NodoAVL<T> nodo) 
+    {
         nodo.altura = 1 + Math.max(obtenerAltura(nodo.izquierdo),
                                    obtenerAltura(nodo.derecho));
     }
@@ -41,7 +45,8 @@ public class ArbolAVL<T extends Comparable<T>> {
         return y;
     }
     // rotación doble: primero izquierda al hijo, luego derecha al nodo
-    private NodoAVL<T> rotacionDobleDerecha(NodoAVL<T> nodo) {
+    private NodoAVL<T> rotacionDobleDerecha(NodoAVL<T> nodo) 
+    {
         nodo.izquierdo = rotacionIzquierda(nodo.izquierdo);
         return rotacionDerecha(nodo);
     }
@@ -71,7 +76,8 @@ public class ArbolAVL<T extends Comparable<T>> {
         return nodo;
     }
     // Insertar
-    public void insertar(T dato) {
+    public void insertar(T dato) 
+    {
         raiz = insertar(raiz, dato);
     }
     private NodoAVL<T> insertar(NodoAVL<T> nodo, T dato) 
@@ -87,10 +93,12 @@ public class ArbolAVL<T extends Comparable<T>> {
         return balancear(nodo);
     }
     // Buscar
-    public T buscar(T dato) {
+    public T buscar(T dato) 
+    {
         return buscar(raiz, dato);
     }
-    private T buscar(NodoAVL<T> nodo, T dato) {
+    private T buscar(NodoAVL<T> nodo, T dato) 
+    {
         if (nodo == null) return null;
         int cmp = dato.compareTo(nodo.dato);
         if (cmp < 0) return buscar(nodo.izquierdo, dato);
@@ -126,7 +134,8 @@ public class ArbolAVL<T extends Comparable<T>> {
         postOrden(raiz);
         System.out.println();
     }
-    private void postOrden(NodoAVL<T> nodo) {
+    private void postOrden(NodoAVL<T> nodo) 
+    {
         if (nodo == null) return;
         postOrden(nodo.izquierdo);
         postOrden(nodo.derecho);
@@ -143,7 +152,8 @@ public class ArbolAVL<T extends Comparable<T>> {
         System.out.println("Libros en el catálogo (orden por código):");
         mostrarInOrden(raiz);
     }
-    private void mostrarInOrden(NodoAVL<T> nodo) {
+    private void mostrarInOrden(NodoAVL<T> nodo) 
+    {
         if (nodo == null) return;
         mostrarInOrden(nodo.izquierdo);
         System.out.println("  " + nodo.dato);
