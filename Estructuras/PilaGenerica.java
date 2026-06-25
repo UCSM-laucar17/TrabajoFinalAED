@@ -4,6 +4,7 @@ public class PilaGenerica<E> {
     private Object[] arreglo;
     private int top;
     private int capacidad;
+    //necesito corregir esto ya que tiene un limite de 100
     private static final int CAPACIDAD_INICIAL = 100;
     public PilaGenerica() {
         this.capacidad = CAPACIDAD_INICIAL;
