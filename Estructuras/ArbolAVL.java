@@ -40,10 +40,13 @@ public class ArbolAVL<T extends Comparable<T>> {
         actualizarAltura(y);
         return y;
     }
+    // rotación doble: primero izquierda al hijo, luego derecha al nodo
     private NodoAVL<T> rotacionDobleDerecha(NodoAVL<T> nodo) {
         nodo.izquierdo = rotacionIzquierda(nodo.izquierdo);
         return rotacionDerecha(nodo);
     }
+
+    // rotación doble: primero derecha al hijo, luego izquierda al nodo
     private NodoAVL<T> rotacionDobleIzquierda(NodoAVL<T> nodo) 
     {
         nodo.derecho = rotacionDerecha(nodo.derecho);
