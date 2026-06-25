@@ -1,17 +1,21 @@
 package Estructuras;
 
-public class ColaGenerica<E> {
-    private Nodo<E> first;
+public class ColaGenerica<E> 
+{  //loas atributos de la cola 
+    private Nodo<E> first;  
     private Nodo<E> last;
     private int size;
+    //constructor de cola incializamos los valores
     public ColaGenerica() {
         this.first = null;
         this.last = null;
         this.size = 0;
     }
-    // Insertar al final de la cola
-    public void enqueue(E data) {
+    // Insertar al final de la cola el dato 
+    public void enqueue(E data) 
+    {
         Nodo<E> newNode = new Nodo<>(data);
+        
         if (isEmpty()) {
             first = newNode;
         } else {
