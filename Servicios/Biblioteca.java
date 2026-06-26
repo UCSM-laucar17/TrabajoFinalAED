@@ -97,5 +97,25 @@ public class Biblioteca {
     
         mostrarDisponibles(catalogo.getRaiz());
     }
+    // Recorre el árbol en inOrden mostrando únicamente
+// los libros cuyo estado sea Disponible
+    private void mostrarDisponibles(estructuras.NodoAVL<Libro> nodo) {
+    
+        // Caso base de la recursión
+        if (nodo == null) {
+            return;
+        }
+    
+        // Recorre el subárbol izquierdo
+        mostrarDisponibles(nodo.getIzquierdo());
+    
+        // Si el libro está disponible se muestra
+        if (nodo.getDato().getEstado()) {
+            System.out.println(nodo.getDato());
+        }
+    
+        // Recorre el subárbol derecho
+        mostrarDisponibles(nodo.getDerecho());
+    }
 
 }
