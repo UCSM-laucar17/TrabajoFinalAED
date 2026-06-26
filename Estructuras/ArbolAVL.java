@@ -180,52 +180,52 @@ public class ArbolAVL<T extends Comparable<T>>
     raiz = eliminar(raiz, dato);
 }
 
-private NodoAVL<T> eliminar(NodoAVL<T> nodo, T dato) {
-
-    if (nodo == null)
-        return null;
-
-    int cmp = dato.compareTo(nodo.dato);
-
-    if (cmp < 0) {
-        nodo.izquierdo = eliminar(nodo.izquierdo, dato);
-    } else if (cmp > 0) {
-        nodo.derecho = eliminar(nodo.derecho, dato);
-    } else {
-
-        // Caso 1: sin hijos
-        if (nodo.izquierdo == null && nodo.derecho == null)
+    private NodoAVL<T> eliminar(NodoAVL<T> nodo, T dato) {
+    
+        if (nodo == null)
             return null;
-
-        // Caso 2: un hijo
-        if (nodo.izquierdo == null)
-            return nodo.derecho;
-
-        if (nodo.derecho == null)
-            return nodo.izquierdo;
-
-        // Caso 3: dos hijos
-        NodoAVL<T> sucesor = obtenerMinimo(nodo.derecho);
-        nodo.dato = sucesor.dato;
-        nodo.derecho = eliminar(nodo.derecho, sucesor.dato);
+    
+        int cmp = dato.compareTo(nodo.dato);
+    
+        if (cmp < 0) {
+            nodo.izquierdo = eliminar(nodo.izquierdo, dato);
+        } else if (cmp > 0) {
+            nodo.derecho = eliminar(nodo.derecho, dato);
+        } else {
+    
+            // Caso 1: sin hijos
+            if (nodo.izquierdo == null && nodo.derecho == null)
+                return null;
+    
+            // Caso 2: un hijo
+            if (nodo.izquierdo == null)
+                return nodo.derecho;
+    
+            if (nodo.derecho == null)
+                return nodo.izquierdo;
+    
+            // Caso 3: dos hijos
+            NodoAVL<T> sucesor = obtenerMinimo(nodo.derecho);
+            nodo.dato = sucesor.dato;
+            nodo.derecho = eliminar(nodo.derecho, sucesor.dato);
+        }
+    
+        return balancear(nodo);
     }
-
-    return balancear(nodo);
-}
-    private NodoAVL<T> obtenerMinimo(NodoAVL<T> nodo) {
-
-    while (nodo.izquierdo != null) {
-        nodo = nodo.izquierdo;
+        private NodoAVL<T> obtenerMinimo(NodoAVL<T> nodo) {
+    
+        while (nodo.izquierdo != null) {
+            nodo = nodo.izquierdo;
+        }
+    
+        return nodo;
     }
-
-    return nodo;
-}
-    public List<T> obtenerElementos() {
-
-    List<T> lista = new ArrayList<>();
-
-    obtenerElementos(raiz, lista);
-
-    return lista;
-}
+        public List<T> obtenerElementos() {
+    
+        List<T> lista = new ArrayList<>();
+    
+        obtenerElementos(raiz, lista);
+    
+        return lista;
+    }
 }
