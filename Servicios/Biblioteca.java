@@ -85,5 +85,17 @@ public class Biblioteca {
         // El árbol ya posee un método para mostrar sus elementos en orden
         catalogo.mostrar();
     }
+    // Muestra únicamente los libros disponibles
+    public void mostrarDisponibles() {
+    
+        if (catalogo.estaVacio()) {
+            System.out.println("No hay libros registrados.");
+            return;
+        }
+    
+        System.out.println("===== LIBROS DISPONIBLES =====");
+    
+        mostrarDisponibles(catalogo.getRaiz());
+    }
 
 }
