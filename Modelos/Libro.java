@@ -44,4 +44,30 @@ public class Libro implements Comparable<Libro> {
     public boolean getEstado() {
         return estado;
     }
+    
+     // Setters
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
 }
