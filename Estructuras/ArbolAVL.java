@@ -212,4 +212,20 @@ private NodoAVL<T> eliminar(NodoAVL<T> nodo, T dato) {
 
     return balancear(nodo);
 }
+    private NodoAVL<T> obtenerMinimo(NodoAVL<T> nodo) {
+
+    while (nodo.izquierdo != null) {
+        nodo = nodo.izquierdo;
+    }
+
+    return nodo;
+}
+    public List<T> obtenerElementos() {
+
+    List<T> lista = new ArrayList<>();
+
+    obtenerElementos(raiz, lista);
+
+    return lista;
+}
 }
