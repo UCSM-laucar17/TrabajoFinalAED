@@ -71,7 +71,7 @@ public class Libro implements Comparable<Libro> {
         this.estado = estado;
     }
      // Comparable
-    // ===========================
+
 
     @Override
     public int compareTo(Libro otro) {
@@ -85,9 +85,8 @@ public class Libro implements Comparable<Libro> {
         return 0;
     }
 
-    // ===========================
     // toString()
-    // ===========================
+  
 
     @Override
     public String toString() {
