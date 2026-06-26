@@ -220,12 +220,4 @@ public class ArbolAVL<T extends Comparable<T>>
     
         return nodo;
     }
-        public List<T> obtenerElementos() {
-    
-        List<T> lista = new ArrayList<>();
-    
-        obtenerElementos(raiz, lista);
-    
-        return lista;
-    }
 }
