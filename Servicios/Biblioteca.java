@@ -51,5 +51,27 @@ public class Biblioteca {
         catalogo.eliminar(libro);
         System.out.println("Libro eliminado correctamente.");
     }
+    // Modifica la información de un libro existente
+    public void modificarLibro(int codigo, String titulo, String autor,
+                               String categoria, int anio, boolean estado) {
+    
+        // Busca el libro por su código
+        Libro libro = buscarCodigo(codigo);
+    
+        // Si no existe, no se puede modificar
+        if (libro == null) {
+            System.out.println("Libro no encontrado.");
+            return;
+        }
+    
+        // Actualiza los datos del libro
+        libro.setTitulo(titulo);
+        libro.setAutor(autor);
+        libro.setCategoria(categoria);
+        libro.setAnio(anio);
+        libro.setEstado(estado);
+    
+        System.out.println("Libro modificado correctamente.");
+    }
 
 }
