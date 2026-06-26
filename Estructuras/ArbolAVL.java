@@ -7,6 +7,9 @@ public class ArbolAVL<T extends Comparable<T>>
     {
         this.raiz = null;
     }
+    public NodoAVL<T> getRaiz() {
+    return raiz;
+    }
     // Altura y balance
     private int obtenerAltura(NodoAVL<T> nodo) 
     {
