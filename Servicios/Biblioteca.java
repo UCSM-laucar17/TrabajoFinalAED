@@ -98,7 +98,7 @@ public class Biblioteca {
         mostrarDisponibles(catalogo.getRaiz());
     }
     // Recorre el árbol en inOrden mostrando únicamente
-// los libros cuyo estado sea Disponible
+    // los libros cuyo estado sea Disponible
     private void mostrarDisponibles(estructuras.NodoAVL<Libro> nodo) {
     
         // Caso base de la recursión
@@ -116,6 +116,38 @@ public class Biblioteca {
     
         // Recorre el subárbol derecho
         mostrarDisponibles(nodo.getDerecho());
+    }
+    // Muestra únicamente los libros prestados
+    public void mostrarPrestados() {
+    
+        if (catalogo.estaVacio()) {
+            System.out.println("No hay libros registrados.");
+            return;
+        }
+    
+        System.out.println("===== LIBROS PRESTADOS =====");
+    
+        mostrarPrestados(catalogo.getRaiz());
+    }
+    // Recorre el árbol mostrando únicamente
+    // los libros cuyo estado sea Prestado
+    private void mostrarPrestados(estructuras.NodoAVL<Libro> nodo) {
+    
+        // Caso base
+        if (nodo == null) {
+            return;
+        }
+    
+        // Recorre el subárbol izquierdo
+        mostrarPrestados(nodo.getIzquierdo());
+    
+        // Si el libro NO está disponible significa que está prestado
+        if (!nodo.getDato().getEstado()) {
+            System.out.println(nodo.getDato());
+        }
+    
+        // Recorre el subárbol derecho
+        mostrarPrestados(nodo.getDerecho());
     }
 
 }
