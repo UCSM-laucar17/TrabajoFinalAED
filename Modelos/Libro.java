@@ -76,12 +76,12 @@ public class Libro implements Comparable<Libro> {
     @Override
     public int compareTo(Libro otro) {
 
-        if (this.codigo < otro.codigo)
+        if (this.codigo < otro.codigo){
             return -1;
-
-        if (this.codigo > otro.codigo)
+        }
+        if (this.codigo > otro.codigo){
             return 1;
-
+        }
         return 0;
     }
 
@@ -93,10 +93,11 @@ public class Libro implements Comparable<Libro> {
 
         String estadoLibro;
 
-        if (estado)
-            estadoLibro = "Disponible";
-        else
-            estadoLibro = "Prestado";
+        if (estado) {
+        estadoLibro = "Disponible";
+        } else {
+        estadoLibro = "Prestado";
+        }
 
         return "Código: " + codigo +
                " | Título: " + titulo +
