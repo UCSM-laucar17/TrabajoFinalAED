@@ -70,4 +70,41 @@ public class Libro implements Comparable<Libro> {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+     // Comparable
+    // ===========================
+
+    @Override
+    public int compareTo(Libro otro) {
+
+        if (this.codigo < otro.codigo)
+            return -1;
+
+        if (this.codigo > otro.codigo)
+            return 1;
+
+        return 0;
+    }
+
+    // ===========================
+    // toString()
+    // ===========================
+
+    @Override
+    public String toString() {
+
+        String estadoLibro;
+
+        if (estado)
+            estadoLibro = "Disponible";
+        else
+            estadoLibro = "Prestado";
+
+        return "Código: " + codigo +
+               " | Título: " + titulo +
+               " | Autor: " + autor +
+               " | Categoría: " + categoria +
+               " | Año: " + anio +
+               " | Estado: " + estadoLibro;
+    }
+
 }
