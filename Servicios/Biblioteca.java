@@ -185,5 +185,34 @@ public class Biblioteca {
         // Recorre el subárbol derecho
         buscarPorTitulo(nodo.getDerecho(), titulo, encontrados);
     }
+    // Busca todos los libros de un determinado autor
+    public ListaEnlazada<Libro> buscarPorAutor(String autor) {
+    
+        ListaEnlazada<Libro> encontrados = new ListaEnlazada<>();
+    
+        buscarPorAutor(catalogo.getRaiz(), autor, encontrados);
+    
+        return encontrados;
+    }
+    
+    // Método recursivo
+    private void buscarPorAutor(NodoAVL<Libro> nodo, String autor,
+                                ListaEnlazada<Libro> encontrados) {
+    
+        if (nodo == null) {
+            return;
+        }
+    
+        buscarPorAutor(nodo.getIzquierdo(), autor, encontrados);
+    
+        Libro libro = nodo.getDato();
+    
+        // Compara el autor sin importar mayúsculas o minúsculas
+        if (libro.getAutor().equalsIgnoreCase(autor)) {
+            encontrados.insertar(libro);
+        }
+    
+        buscarPorAutor(nodo.getDerecho(), autor, encontrados);
+    }
 
 }
