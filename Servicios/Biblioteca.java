@@ -73,5 +73,17 @@ public class Biblioteca {
     
         System.out.println("Libro modificado correctamente.");
     }
+    // Muestra todos los libros registrados en el catálogo
+    public void mostrarLibros() {
+    
+        // Si el árbol está vacío, se informa al usuario
+        if (catalogo.estaVacio()) {
+            System.out.println("No hay libros registrados.");
+            return;
+        }
+    
+        // El árbol ya posee un método para mostrar sus elementos en orden
+        catalogo.mostrar();
+    }
 
 }
