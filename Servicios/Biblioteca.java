@@ -54,8 +54,7 @@ public class Biblioteca {
         System.out.println("Libro eliminado correctamente.");
     }
     // Modifica la información de un libro existente
-    public void modificarLibro(int codigo, String titulo, String autor,
-                               String categoria, int anio, boolean estado) {
+    public void modificarLibro(int codigo, String titulo, String autor, String categoria, int anio, boolean estado) {
     
         // Busca el libro por su código
         Libro libro = buscarCodigo(codigo);
@@ -150,6 +149,41 @@ public class Biblioteca {
     
         // Recorre el subárbol derecho
         mostrarPrestados(nodo.getDerecho());
+    }
+    // Busca todos los libros cuyo título coincida con el indicado
+    public ListaEnlazada<Libro> buscarPorTitulo(String titulo) {
+    
+        // Lista donde se almacenarán los libros encontrados
+        ListaEnlazada<Libro> encontrados = new ListaEnlazada<>();
+    
+        // Recorre todo el árbol buscando coincidencias
+        buscarPorTitulo(catalogo.getRaiz(), titulo, encontrados);
+    
+        return encontrados;
+    }
+    
+    // Método recursivo que recorre el árbol
+    private void buscarPorTitulo(NodoAVL<Libro> nodo, String titulo,
+                                 ListaEnlazada<Libro> encontrados) {
+    
+        // Caso base
+        if (nodo == null) {
+            return;
+        }
+    
+        // Recorre el subárbol izquierdo
+        buscarPorTitulo(nodo.getIzquierdo(), titulo, encontrados);
+    
+        // Obtiene el libro almacenado en el nodo
+        Libro libro = nodo.getDato();
+    
+        // Si el título coincide, se agrega a la lista
+        if (libro.getTitulo().equalsIgnoreCase(titulo)) {
+            encontrados.insertar(libro);
+        }
+    
+        // Recorre el subárbol derecho
+        buscarPorTitulo(nodo.getDerecho(), titulo, encontrados);
     }
 
 }
