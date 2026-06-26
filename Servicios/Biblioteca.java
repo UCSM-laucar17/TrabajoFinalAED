@@ -260,5 +260,36 @@ public class Biblioteca {
     
         obtenerLibros(nodo.getDerecho(), lista);
     }
+    // Ordena los libros alfabéticamente por título
+    public void ordenarPorTitulo() {
+    
+        // Lista donde se copiarán todos los libros del árbol
+        ListaEnlazada<Libro> lista = new ListaEnlazada<>();
+    
+        // Obtiene todos los libros del árbol
+        obtenerLibros(catalogo.getRaiz(), lista);
+    
+        // Algoritmo Bubble Sort
+        for (int i = 0; i < lista.size() - 1; i++) {
+    
+            for (int j = 0; j < lista.size() - i - 1; j++) {
+    
+                // Obtiene dos libros consecutivos
+                Libro libro1 = lista.obtener(j);
+                Libro libro2 = lista.obtener(j + 1);
+    
+                // Si el primero va después del segundo alfabéticamente
+                if (libro1.getTitulo().compareToIgnoreCase(libro2.getTitulo()) > 0) {
+    
+                    // Intercambia las posiciones
+                    lista.set(j, libro2);
+                    lista.set(j + 1, libro1);
+                }
+            }
+        }
+    
+        // Muestra la lista ordenada
+        lista.mostrar();
+    }
 
 }
