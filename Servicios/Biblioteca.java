@@ -2,6 +2,8 @@ package servicios;
 
 import estructuras.ArbolAVL;
 import modelos.Libro;
+import estructuras.ListaEnlazada;
+import estructuras.NodoAVL;
 
 public class Biblioteca {
 
