@@ -11,4 +11,15 @@ public NodoAVL(T dato) {
         this.derecho = null;
         this.altura = 1;
     }
+public T getDato() {
+    return dato;
+}
+
+public NodoAVL<T> getIzquierdo() {
+    return izquierdo;
+}
+
+public NodoAVL<T> getDerecho() {
+    return derecho;
+}
 }
