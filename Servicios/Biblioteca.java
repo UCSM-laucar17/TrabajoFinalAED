@@ -243,5 +243,22 @@ public class Biblioteca {
     
         buscarPorCategoria(nodo.getDerecho(), categoria, encontrados);
     }
+    // Recorre el árbol y agrega todos los libros a una lista
+    private void obtenerLibros(NodoAVL<Libro> nodo,
+                               ListaEnlazada<Libro> lista) {
+    
+        // Caso base
+        if (nodo == null) {
+            return;
+        }
+    
+        // Recorre el árbol en inOrden
+        obtenerLibros(nodo.getIzquierdo(), lista);
+    
+        // Agrega el libro a la lista
+        lista.insertar(nodo.getDato());
+    
+        obtenerLibros(nodo.getDerecho(), lista);
+    }
 
 }
