@@ -44,11 +44,11 @@ public class ListaEnlazada<T> {
         Nodo<T> actual = cabeza;
 
         // Avanza hasta el último nodo
-        while (actual.getSiguiente() != null) {
-            actual = actual.getSiguiente();
+        while (actual.getNext() != null) {
+            actual = actual.getNext();
         }
 
-        actual.setSiguiente(nuevo);
+        actual.setNext(nuevo);
 
         tamanio++;
     }
@@ -65,10 +65,9 @@ public class ListaEnlazada<T> {
 
         // Avanza hasta la posición indicada
         for (int i = 0; i < indice; i++) {
-            actual = actual.getSiguiente();
+            actual = actual.getNext();
         }
 
-        return actual.getDato();
+        return actual.getData();
     }
-
 }
