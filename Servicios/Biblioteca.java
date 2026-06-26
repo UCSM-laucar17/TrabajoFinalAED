@@ -214,5 +214,34 @@ public class Biblioteca {
     
         buscarPorAutor(nodo.getDerecho(), autor, encontrados);
     }
+    // Busca todos los libros pertenecientes a una categoría
+    public ListaEnlazada<Libro> buscarPorCategoria(String categoria) {
+    
+        ListaEnlazada<Libro> encontrados = new ListaEnlazada<>();
+    
+        buscarPorCategoria(catalogo.getRaiz(), categoria, encontrados);
+    
+        return encontrados;
+    }
+    
+    // Método recursivo
+    private void buscarPorCategoria(NodoAVL<Libro> nodo, String categoria,
+                                    ListaEnlazada<Libro> encontrados) {
+    
+        if (nodo == null) {
+            return;
+        }
+    
+        buscarPorCategoria(nodo.getIzquierdo(), categoria, encontrados);
+    
+        Libro libro = nodo.getDato();
+    
+        // Si pertenece a la categoría buscada, se agrega a la lista
+        if (libro.getCategoria().equalsIgnoreCase(categoria)) {
+            encontrados.insertar(libro);
+        }
+    
+        buscarPorCategoria(nodo.getDerecho(), categoria, encontrados);
+    }
 
 }
