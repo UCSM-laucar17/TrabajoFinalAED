@@ -26,35 +26,38 @@ public class ColaGenerica<E>
     }
     // Retirar del frente de la cola
     public E dequeue() throws Exception {
-        if (isEmpty()) throw new Exception("Cola vacía, nada que desencolar.");
+        if (isEmpty()) throw new Exception("Cola vacia, nada que desencolar.");
         E data = first.getData();
         first = first.getNext();
         size--;
         if (first == null) last = null;
         return data;
     }
-    // Ver el primer elemento sin retirarlo
+    // Ver el primer elemento sin retirarlo de la cola
     public E peek() throws Exception {
-        if (isEmpty()) throw new Exception("Cola vacía, nada que consultar.");
+        if (isEmpty()) throw new Exception("Cola vacaa, nada que consultar.");
         return first.getData();
     }
+    //verifica si esta vacia la cola
     public boolean isEmpty() {
         return first == null;
     }
+    //devuelve el numero de elementos en la cola
     public int size() {
         return this.size;
     }
+    //muetsra todo los elelmentos de la cola en orden
     public void mostrar() {
         if (isEmpty()) {
-            System.out.println("  La cola está vacía.");
+            System.out.println("  La cola esta vacia.");
             return;
         }
-        Nodo<E> aux = first;
+        Nodo<E> aux = first; //nodo auxiliar para recorrer la cola
         int pos = 1;
         System.out.println("  Cola (frente → final):");
         while (aux != null) {
             System.out.println("  [" + pos + "] " + aux.getData());
-            aux = aux.getNext();
+            aux = aux.getNext(); //avanzamos al siguiente nodo
             pos++;
         }
     }
