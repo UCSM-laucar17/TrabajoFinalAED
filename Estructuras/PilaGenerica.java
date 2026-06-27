@@ -4,7 +4,7 @@ public class PilaGenerica<E> {
     private Object[] arreglo;
     private int top;
     private int capacidad;
-    //necesito corregir esto ya que tiene un limite de 100
+     // Capacidad con la que arranca la pila. Es pequeña a proposito: redimensionar() la duplica
     private static final int CAPACIDAD_INICIAL = 100;
     public PilaGenerica() {
         this.capacidad = CAPACIDAD_INICIAL;
@@ -16,6 +16,7 @@ public class PilaGenerica<E> {
         if (top == capacidad - 1) {
             redimensionar();
         }
+         // Primero incrementa top, luego guarda el elemento
         arreglo[++top] = data;
     }
     // Retirar del tope
@@ -34,7 +35,7 @@ public class PilaGenerica<E> {
         return (E) arreglo[top];
     }
     public boolean isEmpty() {
-        return top == -1;
+        return top == -1;  //-1 indica que la pila está vacía
     }
     public int size() {
         return top + 1;
