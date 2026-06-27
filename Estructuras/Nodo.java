@@ -1,12 +1,13 @@
 package Estructuras;
-
+//clase nodo con su atributos
 public class Nodo<E> {
     E data;
-    Nodo<E> next;
+    Nodo<E> next; //nodo siguiente
     public Nodo(E data) {
-        this.data = data;
+        this.data = data; //referenciamos al dato, y al nodo siguiente con valores
         this.next = null;
-    }
+    } 
+    //metodos de Nodo
     public E getData() {
         return data;
     }
