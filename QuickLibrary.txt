@@ -8,7 +8,8 @@ QuickLibrary
 │   ├── ColaGenerica
 │   ├── PilaGenerica
 │   ├── NodoAVL
-│   └── ArbolAVL
+│   ├── ArbolAVL
+│   └── ListaEnlazada
 ├── servicios
 │   ├── Biblioteca
 │   ├── GestorPrestamos
