@@ -27,7 +27,6 @@ public class Biblioteca {
     // Buscar libro por código
     public Libro buscarCodigo(int codigo) {
         Libro aux = new Libro(codigo, "", "", "", 0, true);
-
         return catalogo.buscar(aux);
     }
     // Eliminar libro por código
