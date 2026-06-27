@@ -172,7 +172,6 @@ public class Biblioteca {
             return;
         }
         buscarPorCategoria(nodo.getIzquierdo(), categoria, encontrados);
-    
         Libro libro = nodo.getDato();
         // Si pertenece a la categoría buscada, se agrega a la lista
         if (libro.getCategoria().equalsIgnoreCase(categoria)) {
