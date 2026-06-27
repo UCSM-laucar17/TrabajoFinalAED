@@ -210,8 +210,7 @@ public class Biblioteca {
                     lista.set(j + 1, libro1);
                 }
             }
-        }
-    
+        } 
         // Muestra la lista ordenada
         lista.mostrar();
     }
