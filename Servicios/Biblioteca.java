@@ -1,9 +1,9 @@
-package servicios;
+package Servicios;
 
-import estructuras.ArbolAVL;
-import modelos.Libro;
-import estructuras.ListaEnlazada;
-import estructuras.NodoAVL;
+import Estructuras.ArbolAVL;
+import Modelos.Libro;
+import Estructuras.ListaEnlazada;
+import Estructuras.NodoAVL;
 
 public class Biblioteca {
 
