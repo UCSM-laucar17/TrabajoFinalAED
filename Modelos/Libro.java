@@ -9,8 +9,7 @@ public class Libro implements Comparable<Libro> {
     private int anio;
     private boolean estado; // true = Disponible | false = Prestado
     // Constructor 
-    public Libro(int codigo, String titulo, String autor,
-                 String categoria, int anio, boolean estado) {
+    public Libro(int codigo, String titulo, String autor, String categoria, int anio, boolean estado) {
         this.codigo = codigo;
         this.titulo = titulo;
         this.autor = autor;
@@ -72,9 +71,9 @@ public class Libro implements Comparable<Libro> {
     public String toString() {
         String estadoLibro;
         if (estado) {
-        estadoLibro = "Disponible";
+               estadoLibro = "Disponible";
         } else {
-        estadoLibro = "Prestado";
+               estadoLibro = "Prestado";
         }
         return "Código: " + codigo +
                " | Título: " + titulo +
