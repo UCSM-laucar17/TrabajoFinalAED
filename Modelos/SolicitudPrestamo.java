@@ -30,7 +30,6 @@ public class SolicitudPrestamo {
     public String getNombreEstudiante() { return nombreEstudiante; }
     public String getCodigoLibro()      { return codigoLibro; }
     public LocalDate getFechaSolicitud(){ return fechaSolicitud; }
-
     @Override
     public String toString() {
         return String.format("[Solicitud] Estudiante: %s (%s) | Libro: %s | Fecha: %s",
