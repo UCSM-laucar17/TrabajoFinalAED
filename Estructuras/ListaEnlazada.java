@@ -1,4 +1,4 @@
-package estructuras;
+package Estructuras;
 
 public class ListaEnlazada<T> {
     // Primer nodo de la lista
@@ -77,7 +77,7 @@ public class ListaEnlazada<T> {
             tamanio--;
             return;
         }
-        Nodo<T> anterior = cabeza
+        Nodo<T> anterior = cabeza;
         // Avanza hasta el nodo anterior al que se eliminará
         for (int i = 0; i < indice - 1; i++) {
             anterior = anterior.getNext();
