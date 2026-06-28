@@ -18,14 +18,19 @@ public class GestorArchivos {
             System.out.println("Archivo '" + RUTA_CSV + "' no encontrado. Se inicia con catálogo vacío.");
             return;
         }
-        int cargados = 0, errores = 0;
+        int cargados = 0;
+        int errores = 0;
 
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
             boolean primeraLinea = true;
 
             while ((linea = br.readLine()) != null) {
-                if (primeraLinea) { primeraLinea = false; continue; } // saltar cabecera
+                if (primeraLinea) {
+                    primeraLinea = false;
+                    continue; 
+                }
+
                 linea = linea.trim();
                 if (linea.isEmpty()) continue;
 
@@ -34,20 +39,24 @@ public class GestorArchivos {
                     errores++;
                     continue;
                 }
+
                 try {
-                    String  codigo    = partes[0].trim();
-                    String  titulo    = partes[1].trim();
-                    String  autor     = partes[2].trim();
-                    String  categoria = partes[3].trim();
-                    int     anio      = Integer.parseInt(partes[4].trim());
+                    int codigo = Integer.parseInt(partes[0].trim());
+                    String titulo = partes[1].trim();
+                    String autor = partes[2].trim();
+                    String categoria = partes[3].trim();
+                    int anio = Integer.parseInt(partes[4].trim());
                     boolean disponible = partes[5].trim().equalsIgnoreCase("Disponible");
 
-                    // Usar registrarLibro() de Biblioteca para pasar por sus validaciones
                     Libro libro = new Libro(codigo, titulo, autor, categoria, anio, disponible);
-                    biblioteca.registrarLibroDirecto(libro); // ver nota abajo
+                    
+                    biblioteca.agregarLibro(libro);  
                     cargados++;
                 } catch (NumberFormatException e) {
-                    System.out.println("  Línea ignorada (año inválido): " + linea);
+                    System.out.println("  Línea ignorada (formato numérico inválido): " + linea);
+                    errores++;
+                } catch (Exception e) {
+                    System.out.println("  Error al procesar línea: " + linea + " → " + e.getMessage());
                     errores++;
                 }
             }
