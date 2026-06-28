@@ -1,4 +1,4 @@
-package estructuras;
+package Estructuras;
 
 public class ArbolAVL<T extends Comparable<T>> 
 {
