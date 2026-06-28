@@ -75,8 +75,7 @@ public class Biblioteca {
         System.out.println("===== LIBROS DISPONIBLES =====");
         mostrarDisponibles(catalogo.getRaiz());
     }
-    // Recorre el árbol en inOrden mostrando únicamente
-    // los libros cuyo estado sea Disponible
+    // Recorre el árbol en inOrden mostrando únicamente los libros cuyo estado sea Disponible
     private void mostrarDisponibles(estructuras.NodoAVL<Libro> nodo) {
         // Caso base de la recursión
         if (nodo == null) {
@@ -100,8 +99,7 @@ public class Biblioteca {
         System.out.println("===== LIBROS PRESTADOS =====");
         mostrarPrestados(catalogo.getRaiz());
     }
-    // Recorre el árbol mostrando únicamente
-    // los libros cuyo estado sea Prestado
+    // Recorre el árbol mostrando únicamente los libros cuyo estado sea Prestado
     private void mostrarPrestados(estructuras.NodoAVL<Libro> nodo) {
         // Caso base
         if (nodo == null) {
