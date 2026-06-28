@@ -13,7 +13,7 @@ public class GestorArchivos {
      * Complejidad: O(n log n) — n inserciones O(log n) en el AVL.
      */
     public static void cargarLibrosCSV(Biblioteca biblioteca) {
-        File archivo = new File(RUTA_CSV);
+        File archivo = new File(RUTA_CSV); //Colocar el enlace de la unicabion del txt 
         if (!archivo.exists()) {
             System.out.println("Archivo '" + RUTA_CSV + "' no encontrado. Se inicia con catálogo vacío.");
             return;
