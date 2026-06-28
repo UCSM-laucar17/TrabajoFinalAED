@@ -40,6 +40,7 @@ public class Prestamo {
         return fechaDevolucion; 
     }
 
+    
     @Override
     public String toString() {
         String dev = (fechaDevolucion != null) ? fechaDevolucion.toString() : "En préstamo";
