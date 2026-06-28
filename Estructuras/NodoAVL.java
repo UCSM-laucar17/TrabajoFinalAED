@@ -14,11 +14,9 @@ package estructuras;
     public T getDato() {
         return dato;
     }
-    
     public NodoAVL<T> getIzquierdo() {
         return izquierdo;
     }
-    
     public NodoAVL<T> getDerecho() {
         return derecho;
     }
