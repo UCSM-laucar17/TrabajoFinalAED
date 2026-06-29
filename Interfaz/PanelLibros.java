@@ -5,6 +5,12 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import Modelos.Libro;
+import Servicios.SistemaBiblioteca;
+
+
+import java.awt.event.*;
+
 
 public class PanelLibros extends JPanel {
 //atributos de espacios para identificar un libro
@@ -212,8 +218,7 @@ private void iniciarComponentes() {
                 return;
             }
 
-            Libro libro = new Libro(codigo,titulo,autor,categoria,anio,estado
-            );
+            Libro libro = new Libro(codigo,titulo,autor,categoria,anio,estado);
             SistemaBiblioteca.biblioteca.registrarLibro(libro);
             actualizarCatalogo();
             limpiarCampos();
@@ -236,9 +241,7 @@ private void iniciarComponentes() {
             txtTitulo.setText(libro.getTitulo());
             txtAutor.setText(libro.getAutor());
             txtCategoria.setText(libro.getCategoria());
-            txtAnio.setText(
-                    String.valueOf(libro.getAnio())
-            );
+            txtAnio.setText(String.valueOf(libro.getAnio()));
             if(libro.getEstado()){
                 rbDisponible.setSelected(true);
             }else{
@@ -253,7 +256,7 @@ private void iniciarComponentes() {
     }
     //modificar con atributos comletos del libro
     //Modificar con comprobacion por parte del ususario
-    private void modificarLibro(){
+     private void modificarLibro(){
         try{
             int opcion = JOptionPane.showConfirmDialog(this,"¿Guardar cambios?","Modificar",JOptionPane.YES_NO_OPTION);
             if(opcion!=JOptionPane.YES_OPTION){
