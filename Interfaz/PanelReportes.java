@@ -1,18 +1,12 @@
-
 package Interfaz;
-
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 import javax.swing.border.*;
-
 import Reportes.ExportadorReportes;
 import Servicios.SistemaBiblioteca;
-
-
-
 import Reportes.ExportadorReportes.*;
+
 public class PanelReportes extends JPanel{
     private JLabel lblTotal;
     private JLabel lblDisponibles;
@@ -21,12 +15,9 @@ public class PanelReportes extends JPanel{
     private JButton btnActualizar;
     private JButton btnExportarTXT;
     private JButton btnExportarCSV;
-
-
     public PanelReportes(){
         iniciarComponentes();
         actualizarReportes();
-
     }
     private void iniciarComponentes(){
         setLayout(new BorderLayout());
@@ -62,7 +53,6 @@ public class PanelReportes extends JPanel{
         botones.add(btnExportarCSV);
         add(botones,BorderLayout.SOUTH);
         agregarEventos();
-
     }
     private JButton crearBoton(String texto){
             JButton boton = new JButton(texto);
@@ -79,41 +69,29 @@ public class PanelReportes extends JPanel{
                 }
             });
             return boton;
-    
         }
         private void agregarEventos(){
             btnActualizar.addActionListener(e->actualizarReportes());
             btnExportarTXT.addActionListener(e->exportarTXT());
             btnExportarCSV.addActionListener(e->exportarCSV());
         }
-    
         private void actualizarReportes(){
         //cambia los datos de los capos con los valores que se muestran
             lblTotal.setText(String.valueOf(SistemaBiblioteca.biblioteca.totalLibros()));
-    
             lblDisponibles.setText(String.valueOf(SistemaBiblioteca.biblioteca.librosDisponibles()));
-    
             lblPrestados.setText(String.valueOf(SistemaBiblioteca.biblioteca.librosPrestados()));
             lblSolicitudes.setText(String.valueOf(SistemaBiblioteca.gestorPrestamos.solicitudesPendientes()));
         }
-    
-
      private void exportarTXT(){
         String reporte = generarReporte();
-
         ExportadorReportes.exportarTXT(reporte);
         JOptionPane.showMessageDialog(this,"Reporte TXT exportado correctamente.");
-
     }
-
     private void exportarCSV(){
-
         String reporte = generarReporte();
         ExportadorReportes.exportarCSV(reporte);
         JOptionPane.showMessageDialog(this,"Reporte CSV exportado correctamente.");
-
     }
-
     private String generarReporte(){
         String texto = "";
         texto += "========== QUICK LIBRARY ==========\n\n";
