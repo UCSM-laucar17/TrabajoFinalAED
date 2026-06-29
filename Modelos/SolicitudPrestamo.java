@@ -6,14 +6,14 @@ public class SolicitudPrestamo {
     private String nombreEstudiante;
     private int codigoLibro;
     private LocalDate fechaSolicitud;
-    public SolicitudPrestamo(String código Estudiante, String nombreEstudiante, int codigoLibro) {
+    public SolicitudPrestamo(String codigo Estudiante, String nombreEstudiante, int codigoLibro) {
         if (codigoEstudiante == null) {
             throw new IllegalArgumentException("El código del estudiante no puede estar vacío.");
         }
         if (nombreEstudiante == null) {
             throw new IllegalArgumentException("El nombre del estudiante no puede estar vacío.");
         }
-        if (codigoLibro == null) {
+        if (codigoLibro == 0) {
             throw new IllegalArgumentException("El código del libro no puede estar vacío.");
         }
         this.codigoEstudiante = codigoEstudiante;
