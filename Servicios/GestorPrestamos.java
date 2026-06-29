@@ -3,28 +3,27 @@ import java.time.LocalDate;
 import Modelos.*;
 import Estructuras.*;
 
-public class GestorPrestamosbin {
+
+public class GestorPrestamos {
     private ColaGenerica<SolicitudPrestamo> colaSolicitudes;
     private PilaGenerica<Prestamo> historialPrestamos;
     private Biblioteca biblioteca;
 
-    public GestorPrestamosbin(Biblioteca biblioteca) {
+    public GestorPrestamos(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
         this.colaSolicitudes = new ColaGenerica<>();
         this.historialPrestamos = new PilaGenerica<>();
     }
 
     // ====================== SOLICITUDES ======================
-    public void registrarSolicitud(String codEstudiante, String nomEstudiante, int codLibro) {
+    public boolean registrarSolicitud(String codEstudiante,String nomEstudiante,int codLibro) {
         Libro libro = biblioteca.buscarCodigo(codLibro);
         if (libro == null) {
-            System.out.println("No existe un libro con código '" + codLibro + "'. Solicitud rechazada.");
-            return;
+            return false;
         }
-
-        SolicitudPrestamo s = new SolicitudPrestamo(codEstudiante, nomEstudiante, codLibro);
-        colaSolicitudes.enqueue(s);
-        System.out.println("Solicitud registrada: " + s);
+        SolicitudPrestamo solicitud =new SolicitudPrestamo(codEstudiante,nomEstudiante,codLibro);
+        colaSolicitudes.enqueue(solicitud);
+        return true;
     }
 
     public void mostrarSolicitudes() {
@@ -48,23 +47,17 @@ public class GestorPrestamosbin {
         }
     }
 
-    public void atenderSolicitud() {
-        if (colaSolicitudes.isEmpty()) {
-            System.out.println("No hay solicitudes pendientes.");
-            return;
+    public boolean atenderSolicitud(){
+        if (colaSolicitudes.isEmpty()){
+            return false;
         }
-
-        SolicitudPrestamo siguiente = null;
         try {
-            siguiente = colaSolicitudes.peek();
+            SolicitudPrestamo siguiente = colaSolicitudes.peek();
             boolean exito = prestarLibro(siguiente);
             colaSolicitudes.dequeue();
-
-            if (!exito) {
-                System.out.println("La solicitud fue retirada de la cola sin completarse.");
-            }
-        } catch (Exception e) {
-            System.out.println("Error al atender solicitud: " + e.getMessage());
+            return exito;
+        }catch (Exception e){
+            return false;
         }
     }
 
@@ -72,48 +65,30 @@ public class GestorPrestamosbin {
     public boolean prestarLibro(SolicitudPrestamo solicitud) {
         Libro libro = biblioteca.buscarCodigo(solicitud.getCodigoLibro());
         if (libro == null) {
-            System.out.println("Libro con código '" + solicitud.getCodigoLibro() + "' no encontrado.");
             return false;
         }
-
         if (!libro.getEstado()) {
-            System.out.println("El libro '" + libro.getTitulo() + "' no está disponible actualmente.");
             return false;
         }
-
-        libro.setEstado(false);        
-        Prestamo prestamo = new Prestamo(solicitud);
-        historialPrestamos.push(prestamo);
-
-        System.out.println("Préstamo realizado exitosamente:");
-        System.out.println("   Libro     : " + libro.getTitulo());
-        System.out.println("   Estudiante: " + solicitud.getNombreEstudiante());
-        System.out.println("   Fecha     : " + prestamo.getFechaPrestamo());
+        libro.setEstado(false);
+        historialPrestamos.push(new Prestamo(solicitud));
         return true;
     }
 
-    public void devolverLibro(int codigoLibro) {
-        if (codigoLibro <=0) {
-            System.out.println("Código de libro inválido.");
-            return;
+    public boolean devolverLibro(int codigoLibro){
+        if (codigoLibro <= 0) {
+            return false;
         }
-
         Libro libro = biblioteca.buscarCodigo(codigoLibro);
-
         if (libro == null) {
-            System.out.println("Libro con código '" + codigoLibro + "' no encontrado.");
-            return;
+            return false;
         }
-
         if (libro.getEstado()) {
-            System.out.println("El libro '" + libro.getTitulo() + "' ya está disponible.");
-            return;
+            return false;
         }
-
         libro.setEstado(true);
         marcarDevolucionEnHistorial(codigoLibro);
-
-        System.out.println("Devolución registrada para: " + libro.getTitulo());
+        return true;
     }
 
     private void marcarDevolucionEnHistorial(int codigoLibro) {
@@ -157,5 +132,34 @@ public class GestorPrestamosbin {
 
     public int getCantidadPrestamosRealizados() {
         return historialPrestamos.size();
+    }
+    public String obtenerSiguienteSolicitud() {
+
+        if (colaSolicitudes.isEmpty()) {
+            return "No hay solicitudes pendientes.";
+        }
+
+        try {
+            return colaSolicitudes.peek().toString();
+        } catch (Exception e) {
+            return "No hay solicitudes.";
+        }
+
+    }   
+    public String obtenerSolicitudesTexto() {
+        //cola
+        return colaSolicitudes.obtenerContenido();
+    }
+
+    public String obtenerHistorialTexto() {
+        //pila
+        return historialPrestamos.obtenerContenido();
+    }
+
+
+
+
+    public int solicitudesPendientes(){
+        return colaSolicitudes.size();
     }
 }
