@@ -266,6 +266,17 @@ private void buscarLibro(){
             JOptionPane.showMessageDialog(this,"Datos incorrectos.");
         }
     }
+    private void eliminarLibro(){
 
+        try{//biusca y eliminar un libro por su codigo
+            int codigo=Integer.parseInt(txtCodigo.getText());
+            SistemaBiblioteca.biblioteca.eliminarLibro(codigo);
+            actualizarCatalogo();
+            limpiarCampos();
+            JOptionPane.showMessageDialog(this,"Libro eliminado.");
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(this,"Código inválido.");
+        }
 
 }
