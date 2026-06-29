@@ -1,35 +1,26 @@
 package Interfaz;
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import Servicios.SistemaBiblioteca;
 
-
 public class PanelPrestamos extends JPanel {
-
     //atributos de operaciones para prestamos
     private JTextField txtCodigoEstudiante;
     private JTextField txtNombre;
     private JTextField txtCodigoLibro;
-
     //atributos de una interfaz grafica
     private JButton btnRegistrar;
     private JButton btnConsultar;
     private JButton btnAtender;
     private JButton btnDevolver;
     private JButton btnLimpiar;
-
     private JTextArea areaHistorial;
-
     private JScrollPane scroll;
-
     //constructor para la pantalla
- public PanelPrestamos(){
-
+    public PanelPrestamos(){
         iniciarComponentes();
-
     }
     private void iniciarComponentes(){
         //diseño y disposicion de la pagina
@@ -52,7 +43,6 @@ public class PanelPrestamos extends JPanel {
         formulario.add(new JLabel("Código Libro"));
         txtCodigoLibro = new JTextField();
         formulario.add(txtCodigoLibro);
-
         //Botones para acciones del ususario
         btnRegistrar = crearBoton("Registrar Solicitud");
         btnConsultar = crearBoton("Consultar Siguiente");
@@ -73,9 +63,7 @@ public class PanelPrestamos extends JPanel {
         scroll.setBorder(new TitledBorder("Historial"));
         add(scroll,BorderLayout.CENTER);
         agregarEventos();
-
     }
-
     //crar botones dentro de los lables ya definidos
     private JButton crearBoton(String texto){
         JButton boton = new JButton(texto);
@@ -94,7 +82,6 @@ public class PanelPrestamos extends JPanel {
         });
         return boton;
     }
-
     //metodos llamados con cada boton
     private void agregarEventos(){
         btnRegistrar.addActionListener(e->registrarSolicitud());
@@ -103,30 +90,24 @@ public class PanelPrestamos extends JPanel {
         btnDevolver.addActionListener(e->devolverLibro());
         btnLimpiar.addActionListener(e->limpiar());
     }
-
     //Verifica y añade una solicitud de prestamo
     private void registrarSolicitud() {
         try {
-
             String codigoEst = txtCodigoEstudiante.getText().trim();
             String nombre = txtNombre.getText().trim();
             int codigoLibro = Integer.parseInt(txtCodigoLibro.getText().trim());
-
             //Comporbacion de integridad de los datos
             if (codigoEst.isEmpty() || nombre.isEmpty()){
                 JOptionPane.showMessageDialog(this,"Complete todos los campos.");
                 return;
-
             }
             boolean exito = SistemaBiblioteca.gestorPrestamos.registrarSolicitud(codigoEst, nombre, codigoLibro);
             if (exito) {
                 JOptionPane.showMessageDialog(this,"Solicitud registrada correctamente.");
                 actualizarSolicitudes();
                 limpiar();
-
             } else {
                 JOptionPane.showMessageDialog(this,"No existe un libro con ese código.");
-
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this,"Código del libro inválido.");
@@ -163,12 +144,10 @@ public class PanelPrestamos extends JPanel {
         }
     }
     private void actualizarSolicitudes() {
-
         areaHistorial.setText(SistemaBiblioteca.gestorPrestamos.obtenerSolicitudesTexto());
         scroll.setBorder(new TitledBorder("Solicitudes pendientes"));
     }
     private void actualizarHistorial() {
-
         areaHistorial.setText(SistemaBiblioteca.gestorPrestamos.obtenerHistorialTexto());
         scroll.setBorder(new TitledBorder("Historial de préstamos"));
     }
@@ -177,7 +156,5 @@ public class PanelPrestamos extends JPanel {
         txtNombre.setText("");
         txtCodigoLibro.setText("");
         txtCodigoEstudiante.requestFocus();
-
     }
-
 }
