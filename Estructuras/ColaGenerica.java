@@ -15,7 +15,6 @@ public class ColaGenerica<E>
     public void enqueue(E data) 
     {
         Nodo<E> newNode = new Nodo<>(data);
-        
         if (isEmpty()) {
             first = newNode;
         } else {
@@ -63,7 +62,6 @@ public class ColaGenerica<E>
     }
     public Nodo<E> getFrente(){
         return first;
-
     }
     public String obtenerContenido() {
         if (isEmpty()) {
