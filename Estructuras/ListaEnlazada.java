@@ -56,7 +56,7 @@ public class ListaEnlazada<E> {
     public void set(int indice, E dato) {
     // Verifica que el índice sea válido
         if (indice < 0 || indice >= tamanio) {
-        return;
+            return;
         }
         Nodo<E> actual = cabeza;
         // Avanza hasta la posición indicada
@@ -117,7 +117,6 @@ public class ListaEnlazada<E> {
     } 
     // Devuelve la posición de un elemento
     public int indiceDe(E dato) {
-    
         Nodo<E> actual = cabeza;
         int indice = 0;
         // Recorre la lista buscando el dato
