@@ -2,13 +2,11 @@ package Modelos;
 import java.time.LocalDate;
 
 public class Prestamo {
-
     private String codigoEstudiante;
     private String nombreEstudiante;
     private int codigoLibro;
     private LocalDate fechaPrestamo;
     private LocalDate fechaDevolucion;
-
     public Prestamo(SolicitudPrestamo solicitud) {
         this.codigoEstudiante = solicitud.getCodigoEstudiante();
         this.nombreEstudiante = solicitud.getNombreEstudiante();
@@ -16,15 +14,12 @@ public class Prestamo {
         this.fechaPrestamo    = LocalDate.now();
         this.fechaDevolucion  = null;
     }
-
     public void registrarDevolucion() {
         this.fechaDevolucion = LocalDate.now();
     }
-
     public boolean estaActivo() {
         return fechaDevolucion == null;
     }
-
     public String getCodigoEstudiante(){ 
         return codigoEstudiante; 
     }
@@ -40,8 +35,6 @@ public class Prestamo {
     public LocalDate getFechaDevolucion(){ 
         return fechaDevolucion; 
     }
-
-    
     @Override
     public String toString() {
         String dev = (fechaDevolucion != null) ? fechaDevolucion.toString() : "En préstamo";
