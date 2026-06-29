@@ -156,4 +156,21 @@ public class PanelPrestamos extends JPanel {
             JOptionPane.showMessageDialog(this,"Código inválido.");
         }
     }
+    private void actualizarSolicitudes() {
+
+        areaHistorial.setText(SistemaBiblioteca.gestorPrestamos.obtenerSolicitudesTexto());
+        scroll.setBorder(new TitledBorder("Solicitudes pendientes"));
+    }
+    private void actualizarHistorial() {
+
+        areaHistorial.setText(SistemaBiblioteca.gestorPrestamos.obtenerHistorialTexto());
+        scroll.setBorder(new TitledBorder("Historial de préstamos"));
+    }
+    private void limpiar() {
+        txtCodigoEstudiante.setText("");
+        txtNombre.setText("");
+        txtCodigoLibro.setText("");
+        txtCodigoEstudiante.requestFocus();
+
+    }
 }
