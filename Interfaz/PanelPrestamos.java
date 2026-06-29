@@ -129,4 +129,31 @@ public class PanelPrestamos extends JPanel {
             JOptionPane.showMessageDialog(this,"Código del libro inválido.");
         }
     }
+    private void atenderSolicitud() {
+        //verifica si las solicitud gue procesada 
+        boolean exito =SistemaBiblioteca.gestorPrestamos.atenderSolicitud();
+        if (exito) {
+            JOptionPane.showMessageDialog(this,"Solicitud atendida correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(this,"No existen solicitudes pendientes.");
+        }
+        //despues de cualquier salida actualiza la biblioteca
+        actualizarSolicitudes();
+    }
+    
+    private void devolverLibro() {
+        try {
+            //por si acaso se convierte el codigo del libro a entero
+            int codigoLibro =Integer.parseInt(txtCodigoLibro.getText().trim());
+            boolean exito =SistemaBiblioteca.gestorPrestamos.devolverLibro(codigoLibro);
+            if (exito) {
+                JOptionPane.showMessageDialog(this,"Libro devuelto correctamente.");
+            } else {
+                JOptionPane.showMessageDialog(this,"No se pudo registrar la devolución.");
+            }
+            actualizarHistorial();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this,"Código inválido.");
+        }
+    }
 }
