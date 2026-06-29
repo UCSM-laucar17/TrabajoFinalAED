@@ -64,3 +64,48 @@ public class PanelReportes extends JPanel{
         agregarEventos();
 
     }
+    private JButton crearBoton(String texto){
+            JButton boton = new JButton(texto);
+            boton.setBackground(new Color(52,152,219));
+            boton.setForeground(Color.WHITE);
+            boton.setFocusPainted(false);
+            boton.setFont(new Font("Segoe UI",Font.BOLD,14));
+            boton.addMouseListener(new MouseAdapter(){
+                public void mouseEntered(MouseEvent e){
+                    boton.setBackground(new Color(41,128,185));
+                }
+                public void mouseExited(MouseEvent e){
+                    boton.setBackground(new Color(52,152,219));
+                }
+            });
+            return boton;
+    
+        }
+        private void agregarEventos(){
+            btnActualizar.addActionListener(e->actualizarReportes());
+            btnExportarTXT.addActionListener(e->exportarTXT());
+            btnExportarCSV.addActionListener(e->exportarCSV());
+        }
+    
+        private void actualizarReportes(){
+        //cambia los datos de los capos con los valores que se muestran
+            lblTotal.setText(String.valueOf(SistemaBiblioteca.biblioteca.totalLibros()));
+    
+            lblDisponibles.setText(String.valueOf(SistemaBiblioteca.biblioteca.librosDisponibles()));
+    
+            lblPrestados.setText(String.valueOf(SistemaBiblioteca.biblioteca.librosPrestados()));
+            lblSolicitudes.setText(String.valueOf(SistemaBiblioteca.gestorPrestamos.solicitudesPendientes()));
+        }
+    
+
+   // Archivos de pureba ahora si vienen los finales V1.0
+        private void exportarTXT(){
+            JOptionPane.showMessageDialog(this,"Pendiente.");
+        }
+    
+        private void exportarCSV(){
+            JOptionPane.showMessageDialog(this,"Pendiente.");
+    
+        }
+
+}
