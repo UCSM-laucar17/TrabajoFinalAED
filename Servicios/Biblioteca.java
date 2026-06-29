@@ -189,7 +189,7 @@ public class Biblioteca {
         lista.insertar(nodo.getDato());
         obtenerLibros(nodo.getDerecho(), lista);
     }
-    // Ordena los libros alfabéticamente por título Complejidad O(n²)
+    // Ordena los libros alfabéticamente por título
     public void ordenarPorTitulo() {
         // Lista donde se copiarán todos los libros del árbol
         ListaEnlazada<Libro> lista = new ListaEnlazada<>();
@@ -213,4 +213,127 @@ public class Biblioteca {
         lista.mostrar();
     }
 
+    // --------------------------------------Nuevos metodos para swnig
+    // Devuelve todos los libros en un String
+    public String obtenerCatalogoTexto() {
+
+        if (catalogo.estaVacio()) {
+            return "No hay libros registrados.";
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        recorrerCatalogo(catalogo.getRaiz(), sb);
+
+        return sb.toString();
+
+    }
+
+    private void recorrerCatalogo(NodoAVL<Libro> nodo, StringBuilder sb){
+
+        if(nodo==null){
+            return;
+        }
+
+        recorrerCatalogo(nodo.getIzquierdo(),sb);
+
+        sb.append(nodo.getDato()).append("\n\n");
+
+        recorrerCatalogo(nodo.getDerecho(),sb);
+
+    }
+
+    // Devuelve los libros disponibles
+    public String obtenerDisponiblesTexto(){
+
+        StringBuilder sb=new StringBuilder();
+
+        recorrerDisponibles(catalogo.getRaiz(),sb);
+
+        return sb.toString();
+
+    }
+
+    private void recorrerDisponibles(NodoAVL<Libro> nodo,StringBuilder sb){
+
+        if(nodo==null)
+            return;
+
+        recorrerDisponibles(nodo.getIzquierdo(),sb);
+
+        if(nodo.getDato().getEstado()){
+            sb.append(nodo.getDato()).append("\n\n");
+        }
+
+        recorrerDisponibles(nodo.getDerecho(),sb);
+
+    }
+
+    // Devuelve los libros prestados
+    public String obtenerPrestadosTexto(){
+
+        StringBuilder sb=new StringBuilder();
+
+        recorrerPrestados(catalogo.getRaiz(),sb);
+
+        return sb.toString();
+
+    }
+
+    private void recorrerPrestados(NodoAVL<Libro> nodo,StringBuilder sb){
+
+        if(nodo==null)
+            return;
+
+        recorrerPrestados(nodo.getIzquierdo(),sb);
+
+        if(!nodo.getDato().getEstado()){
+            sb.append(nodo.getDato()).append("\n\n");
+        }
+
+        recorrerPrestados(nodo.getDerecho(),sb);
+
+    }
+    public int totalLibros() {
+        return catalogo.contar();
+    }
+    public int librosDisponibles() {
+        return contarDisponibles(catalogo.getRaiz());
+
+    }
+    private int contarDisponibles(NodoAVL<Libro> nodo) {
+
+        if(nodo==null){
+            return 0;
+        }
+        int contador = 0;
+
+        if(nodo.getDato().getEstado()){
+            contador = 1;
+        }
+        return contador+ contarDisponibles(nodo.getIzquierdo())+ contarDisponibles(nodo.getDerecho());
+
+    }
+    public int librosPrestados(){
+        return contarPrestados(catalogo.getRaiz());
+    }
+    private int contarPrestados(NodoAVL<Libro> nodo){
+
+        if(nodo==null){
+            return 0;
+        }
+        int contador = 0;
+        if(!nodo.getDato().getEstado()){
+            contador = 1;
+        }
+        return contador+ contarPrestados(nodo.getIzquierdo())+ contarPrestados(nodo.getDerecho());
+
+    }
+
+
+    public ListaEnlazada<Libro> obtenerTodosLosLibros() {
+        ListaEnlazada<Libro> lista = new ListaEnlazada<>();
+        obtenerLibros(catalogo.getRaiz(), lista);
+        return lista;
+    }
 }
