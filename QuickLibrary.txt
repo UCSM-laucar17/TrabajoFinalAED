@@ -1,28 +1,32 @@
 QuickLibrary
-├── modelos
-│   ├── Libro
-│   ├── SolicitudPrestamo
-│   └── Prestamo
-├── estructuras
-│   ├── Nodo
-│   ├── ColaGenerica
-│   ├── PilaGenerica
-│   ├── NodoAVL
+├── Estructuras
 │   ├── ArbolAVL
-│   └── ListaEnlazada
-├── servicios
-│   ├── Biblioteca
-│   ├── GestorPrestamos
-│   └── GestorArchivos
-├── interfaz
-│   ├── VentanaPrincipal
+│   ├── ColaGenerica
+│   ├── ExcepcionVacia
+│   ├── ListaEnlazada
+│   ├── Nodo
+│   ├── NodoAVL
+│   └── PilaGenerica
+├── Interfaz
+│   ├── Colores
 │   ├── PanelLibros
 │   ├── PanelPrestamos
-│   └── PanelReportes
-├── reportes
+│   ├── PanelReportes
+│   └── VentanaPrincipal
+├── Modelos
+│   ├── Libro
+│   ├── Prestamo
+│   └── SolicitudPrestamo
+├── Reportes
 │   └── ExportadorReportes
-├── test
+├── Servicios
+│   ├── Biblioteca
+│   ├── GestorArchivos
+│   ├── GestorPrestamos
+│   └── SistemaBiblioteca
+├── Test
 │   ├── AVLTest
 │   ├── ColaTest
 │   └── PrestamoTest
 └── Main
+    └── Main
