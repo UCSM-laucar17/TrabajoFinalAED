@@ -57,13 +57,11 @@ public class PilaGenerica<E> {
         System.arraycopy(arreglo, 0, nuevo, 0, arreglo.length);
         arreglo = nuevo;
     }
-
     //saca datos de la pila con iteraciones
     public String obtenerContenido() {
         if (isEmpty()) {
             return "No hay préstamos registrados.";
         }
-
         String resultado = ""; // Variable String para untar texto a mandar
         for (int i = top; i >= 0; i--) {
             resultado += arreglo[i] + "\n\n";
