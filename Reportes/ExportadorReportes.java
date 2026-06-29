@@ -14,4 +14,7 @@ public class ExportadorReportes {
             System.out.println(e.getMessage());
         }
     }
+    public static void exportarTXT(String contenido){
+
+    }
 }
