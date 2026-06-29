@@ -1,5 +1,4 @@
 package Interfaz;
-
 import java.awt.*;
 import javax.swing.*;
 
@@ -14,15 +13,12 @@ public class VentanaPrincipal extends JFrame{
         iniciarComponentes();
         setVisible(true);
     }
-    
     private void iniciarComponentes(){
-
         setTitle("Quick Library");
         setSize(1200,700);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-
         //Menu inicio
         panelMenu=new JPanel();
         panelMenu.setBackground(Colores.MENU);
@@ -48,16 +44,11 @@ public class VentanaPrincipal extends JFrame{
         panelMenu.add(btnLibros);
         panelMenu.add(btnPrestamo);
         panelMenu.add(btnReportes);
-
-
-
         JLabel pie = new JLabel("v1.0");
         pie.setForeground(Color.LIGHT_GRAY);
         pie.setHorizontalAlignment(SwingConstants.CENTER);
         pie.setBounds(0,640,220,20);
         panelMenu.add(pie);
-
-        
         //Estucutura de la poantalla
         card=new CardLayout();
         panelContenido=new JPanel(card);
@@ -95,5 +86,4 @@ public class VentanaPrincipal extends JFrame{
             }
         });
     }
-
 }
