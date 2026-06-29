@@ -1,3 +1,4 @@
+package Modelos;
 import java.time.LocalDate;
 
 public class Prestamo {
