@@ -1,19 +1,22 @@
+package Servicios;
 import java.time.LocalDate;
+import Modelos.*;
+import Estructuras.*;
 
-public class GestorPrestamos {
+public class GestorPrestamosbin {
     private ColaGenerica<SolicitudPrestamo> colaSolicitudes;
     private PilaGenerica<Prestamo> historialPrestamos;
     private Biblioteca biblioteca;
 
-    public GestorPrestamos(Biblioteca biblioteca) {
+    public GestorPrestamosbin(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
         this.colaSolicitudes = new ColaGenerica<>();
         this.historialPrestamos = new PilaGenerica<>();
     }
 
     // ====================== SOLICITUDES ======================
-    public void registrarSolicitud(String codEstudiante, String nomEstudiante, String codLibro) {
-        Libro libro = biblioteca.buscarPorCodigo(codLibro.trim());
+    public void registrarSolicitud(String codEstudiante, String nomEstudiante, int codLibro) {
+        Libro libro = biblioteca.buscarCodigo(codLibro);
         if (libro == null) {
             System.out.println("No existe un libro con código '" + codLibro + "'. Solicitud rechazada.");
             return;
@@ -67,7 +70,7 @@ public class GestorPrestamos {
 
     // ====================== PRÉSTAMOS ======================
     public boolean prestarLibro(SolicitudPrestamo solicitud) {
-        Libro libro = biblioteca.buscarPorCodigo(solicitud.getCodigoLibro());
+        Libro libro = biblioteca.buscarCodigo(solicitud.getCodigoLibro());
         if (libro == null) {
             System.out.println("Libro con código '" + solicitud.getCodigoLibro() + "' no encontrado.");
             return false;
@@ -89,14 +92,13 @@ public class GestorPrestamos {
         return true;
     }
 
-    public void devolverLibro(String codigoLibro) {
-        if (codigoLibro == null || codigoLibro.trim().isEmpty()) {
+    public void devolverLibro(int codigoLibro) {
+        if (codigoLibro <=0) {
             System.out.println("Código de libro inválido.");
             return;
         }
 
-        codigoLibro = codigoLibro.trim();
-        Libro libro = biblioteca.buscarPorCodigo(codigoLibro);
+        Libro libro = biblioteca.buscarCodigo(codigoLibro);
 
         if (libro == null) {
             System.out.println("Libro con código '" + codigoLibro + "' no encontrado.");
@@ -114,7 +116,7 @@ public class GestorPrestamos {
         System.out.println("Devolución registrada para: " + libro.getTitulo());
     }
 
-    private void marcarDevolucionEnHistorial(String codigoLibro) {
+    private void marcarDevolucionEnHistorial(int codigoLibro) {
         PilaGenerica<Prestamo> auxiliar = new PilaGenerica<>();
         boolean marcado = false;
 
@@ -126,7 +128,7 @@ public class GestorPrestamos {
                 break;
             }
 
-            if (!marcado && p.getCodigoLibro().equals(codigoLibro) && p.estaActivo()) {
+            if (!marcado && p.getCodigoLibro()==codigoLibro && p.estaActivo()) {
                 p.registrarDevolucion();
                 marcado = true;
             }
