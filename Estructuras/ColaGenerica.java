@@ -61,4 +61,22 @@ public class ColaGenerica<E>
             pos++;
         }
     }
+    public Nodo<E> getFrente(){
+        return first;
+
+    }
+    public String obtenerContenido() {
+        if (isEmpty()) {
+            return "No hay solicitudes pendientes.";
+        }
+        String resultado = ""; 
+        Nodo<E> aux = first;
+        int pos = 1;
+        while (aux != null) {
+            resultado += pos + ". " + aux.getData() + "\n\n";
+            aux = aux.getNext();
+            pos++;
+        }
+        return resultado;
+    }
 }
