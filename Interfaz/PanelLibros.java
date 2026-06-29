@@ -1,16 +1,10 @@
-
 package Interfaz;
-
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
-
 import Modelos.Libro;
 import Servicios.SistemaBiblioteca;
-
-
 import java.awt.event.*;
-
 
 public class PanelLibros extends JPanel {
 //atributos de espacios para identificar un libro
@@ -26,33 +20,22 @@ public class PanelLibros extends JPanel {
     private JButton btnModificar;
     private JButton btnEliminar;
     private JButton btnLimpiar;
-
     private JTextArea areaCatalogo;
-
     private JScrollPane scroll;
-
     //Constructor
     public PanelLibros() {
     //constructor para poder iniciar funciones de la pantalla
-
         iniciarComponentes();
-
     }
-private void iniciarComponentes() {
-
+    private void iniciarComponentes() {
         setLayout(new BorderLayout(15,15));
-
         setBackground(new Color(236,240,241));
-
         // Título
         JLabel titulo = new JLabel("Pagi404");//pon titulo de pagina
-
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
         titulo.setFont(new Font("Segoe UI",Font.BOLD,26));
         titulo.setBorder(new EmptyBorder(15,10,15,10));
         add(titulo,BorderLayout.NORTH);
-
-
         // Panel Izquierdo
         JPanel panelFormulario = new JPanel();
         panelFormulario.setBackground(Color.WHITE);
@@ -62,7 +45,6 @@ private void iniciarComponentes() {
         GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(8,8,8,8);
         c.fill = GridBagConstraints.HORIZONTAL;
-
         // Código
         c.gridx=0;
         c.gridy=0;
@@ -70,8 +52,6 @@ private void iniciarComponentes() {
         txtCodigo = new JTextField();
         c.gridx=1;
         panelFormulario.add(txtCodigo,c);
-
-
         // Título
         c.gridx=0;
         c.gridy++;
@@ -86,8 +66,6 @@ private void iniciarComponentes() {
         txtAutor = new JTextField();
         c.gridx=1;
         panelFormulario.add(txtAutor,c);
-
-
         // Categoría
         c.gridx=0;
         c.gridy++;
@@ -95,8 +73,6 @@ private void iniciarComponentes() {
         txtCategoria = new JTextField();
         c.gridx=1;
         panelFormulario.add(txtCategoria,c);
-
-
         // Año
         c.gridx=0;
         c.gridy++;
@@ -104,8 +80,6 @@ private void iniciarComponentes() {
         txtAnio = new JTextField();
         c.gridx=1;
         panelFormulario.add(txtAnio,c);
-
-
         // Estado
         c.gridx=0;
         c.gridy++;
@@ -124,8 +98,6 @@ private void iniciarComponentes() {
         panelEstado.add(rbPrestado);
         c.gridx=1;
         panelFormulario.add(panelEstado,c);
-
-
         // Botones
         JPanel panelBotones = new JPanel(new GridLayout(3,2,10,10));
         panelBotones.setBackground(Color.WHITE);
@@ -145,8 +117,6 @@ private void iniciarComponentes() {
         c.fill=GridBagConstraints.BOTH;
         panelFormulario.add(panelBotones,c);
         add(panelFormulario,BorderLayout.WEST);
-
-
         // Panel Derecho
         JPanel panelLista = new JPanel(new BorderLayout());
         panelLista.setBackground(Color.WHITE);
@@ -158,27 +128,23 @@ private void iniciarComponentes() {
         scroll = new JScrollPane(areaCatalogo);
         panelLista.add(scroll,BorderLayout.CENTER);
         add(panelLista,BorderLayout.CENTER);
-    
-
         //modificaciones al catalogo
         areaCatalogo.setLineWrap(true);
         areaCatalogo.setWrapStyleWord(true);
         areaCatalogo.setCaretPosition(0);
         areaCatalogo.setBackground(new Color(248,249,250));
-
         //hover es diseño de sobras en botones
         agregarHover(btnRegistrar);
         agregarHover(btnBuscar);
         agregarHover(btnModificar);
         agregarHover(btnEliminar);
         agregarHover(btnLimpiar);
-                
         //metodos esperados en para una primera vez
         agregarEventos();
         actualizarCatalogo();
         agregarValidaciones();
     }
-  // Botones
+    // Botones
     private JButton crearBoton(String texto){
         JButton boton = new JButton(texto);
         boton.setFocusPainted(false);
@@ -189,8 +155,7 @@ private void iniciarComponentes() {
         boton.setBorder(new EmptyBorder(8,8,8,8));
         return boton;
     }
-
-  //que hace cada boten 
+  //que hace cada boton 
     private void agregarEventos() {
         btnRegistrar.addActionListener(e -> registrarLibro());
         btnBuscar.addActionListener(e -> buscarLibro());
@@ -198,12 +163,10 @@ private void iniciarComponentes() {
         btnEliminar.addActionListener(e -> eliminarLibro());
         btnLimpiar.addActionListener(e -> limpiarCampos());
     }
-
-  //metodos por boton 
+    //metodos por boton 
     private void registrarLibro(){
-
         try {
-            //combierte los tipos de datos con parse
+            //convierte los tipos de datos con pares
             int codigo = Integer.parseInt(txtCodigo.getText());
             String titulo = txtTitulo.getText();
             String autor = txtAutor.getText();
@@ -217,7 +180,6 @@ private void iniciarComponentes() {
                 JOptionPane.showMessageDialog(this,"Complete todos los campos.");
                 return;
             }
-
             Libro libro = new Libro(codigo,titulo,autor,categoria,anio,estado);
             SistemaBiblioteca.biblioteca.registrarLibro(libro);
             actualizarCatalogo();
@@ -237,7 +199,6 @@ private void iniciarComponentes() {
                 JOptionPane.showMessageDialog(this,"Libro no encontrado.");
                 return;
             }
-
             txtTitulo.setText(libro.getTitulo());
             txtAutor.setText(libro.getAutor());
             txtCategoria.setText(libro.getCategoria());
@@ -252,7 +213,6 @@ private void iniciarComponentes() {
             JOptionPane.showMessageDialog(this,"Ingrese un código válido.");
 
         }
-
     }
     //modificar con atributos comletos del libro
     //Modificar con comprobacion por parte del ususario
@@ -272,7 +232,6 @@ private void iniciarComponentes() {
         }
     }
     //nuevo eliminar(añade confirmacion para eliminar)
-
     private void eliminarLibro(){
         try{
             int opcion = JOptionPane.showConfirmDialog(this,"¿Desea eliminar este libro?","Confirmar",JOptionPane.YES_NO_OPTION);
@@ -291,8 +250,7 @@ private void iniciarComponentes() {
             );
         }
     }
-
-    //lo que sea eliminao debe borrarse del sregistro
+    //lo que se ha eliminado debe borrarse del registro
     //despues de las consultas se limpian los campos
     private void limpiarCampos(){
         txtCodigo.setText("");
@@ -303,8 +261,6 @@ private void iniciarComponentes() {
         rbDisponible.setSelected(true);
         txtCodigo.requestFocus();
     }
-
-
     //mostrar biblioteca actualizaada
     private void actualizarCatalogo(){
         areaCatalogo.setText(SistemaBiblioteca.biblioteca.obtenerCatalogoTexto());
@@ -321,11 +277,8 @@ private void iniciarComponentes() {
         txtCodigo.addKeyListener(soloNumeros);
         txtAnio.addKeyListener(soloNumeros);
     }
-
     private void agregarHover(JButton boton){ //mejora de botones en interfaz   
-
         boton.addMouseListener(new MouseAdapter() {
-
             public void mouseEntered(MouseEvent e) {
                 boton.setBackground(new Color(41,128,185));
             }
@@ -333,7 +286,5 @@ private void iniciarComponentes() {
                 boton.setBackground(new Color(52,152,219));
             }
         });
-
     }
-
 }
