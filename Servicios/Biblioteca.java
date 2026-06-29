@@ -189,7 +189,7 @@ public class Biblioteca {
         lista.insertar(nodo.getDato());
         obtenerLibros(nodo.getDerecho(), lista);
     }
-    // Ordena los libros alfabéticamente por título
+    // Ordena los libros alfabéticamente por título Complejidad O(n²)
     public void ordenarPorTitulo() {
         // Lista donde se copiarán todos los libros del árbol
         ListaEnlazada<Libro> lista = new ListaEnlazada<>();
