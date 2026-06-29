@@ -223,7 +223,49 @@ private void iniciarComponentes() {
             JOptionPane.showMessageDialog(this,"Código y año deben ser números.");
         }
     }
+private void buscarLibro(){
+        try{
+            //busca por codigo 
+            int codigo = Integer.parseInt(txtCodigo.getText());
+            Libro libro =SistemaBiblioteca.biblioteca.buscarCodigo(codigo);
+            if(libro==null){
+                JOptionPane.showMessageDialog(this,"Libro no encontrado.");
+                return;
+            }
 
+            txtTitulo.setText(libro.getTitulo());
+            txtAutor.setText(libro.getAutor());
+            txtCategoria.setText(libro.getCategoria());
+            txtAnio.setText(
+                    String.valueOf(libro.getAnio())
+            );
+            if(libro.getEstado()){
+                rbDisponible.setSelected(true);
+            }else{
+                rbPrestado.setSelected(true);
+            }
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(this,"Ingrese un código válido.");
+
+        }
+
+    }
+    //modificar con atributos comletos del libro
+    private void modificarLibro(){
+
+        try{
+            int codigo=Integer.parseInt(txtCodigo.getText());
+            //lamma a modificar con atributos de libro 
+            SistemaBiblioteca.biblioteca.modificarLibro(codigo,txtTitulo.getText(),txtAutor.getText(),txtCategoria.getText(),Integer.parseInt(txtAnio.getText()),rbDisponible.isSelected()
+            );
+            actualizarCatalogo();
+            JOptionPane.showMessageDialog(this,"Libro modificado.");
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(this,"Datos incorrectos.");
+        }
+    }
 
 
 }
