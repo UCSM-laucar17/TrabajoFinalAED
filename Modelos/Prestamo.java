@@ -4,7 +4,7 @@ public class Prestamo {
 
     private String codigoEstudiante;
     private String nombreEstudiante;
-    private String codigoLibro;
+    private int codigoLibro;
     private LocalDate fechaPrestamo;
     private LocalDate fechaDevolucion;
 
@@ -30,7 +30,7 @@ public class Prestamo {
     public String getNombreEstudiante() { 
         return nombreEstudiante; 
     }
-    public String getCodigoLibro(){ 
+    public int getCodigoLibro(){ 
         return codigoLibro; 
     }
     public LocalDate getFechaPrestamo() { 
