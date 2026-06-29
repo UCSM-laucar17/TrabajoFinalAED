@@ -7,8 +7,7 @@ public class GestorArchivos {
 
     /**
      * Carga libros desde el CSV y los registra en la Biblioteca.
-     * Omite la cabecera y líneas con formato incorrecto.
-     * Complejidad: O(n log n) — n inserciones O(log n) en el AVL.
+
      */
     private static final String RUTA = "libros.csv";
     public static void guardarLibrosCSV(Biblioteca biblioteca) {
