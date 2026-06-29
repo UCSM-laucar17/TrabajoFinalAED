@@ -76,7 +76,7 @@ public class Biblioteca {
         mostrarDisponibles(catalogo.getRaiz());
     }
     // Recorre el árbol en inOrden mostrando únicamente los libros cuyo estado sea Disponible
-    private void mostrarDisponibles(estructuras.NodoAVL<Libro> nodo) {
+    private void mostrarDisponibles(Estructuras.NodoAVL<Libro> nodo) {
         // Caso base de la recursión
         if (nodo == null) {
             return;
@@ -100,7 +100,7 @@ public class Biblioteca {
         mostrarPrestados(catalogo.getRaiz());
     }
     // Recorre el árbol mostrando únicamente los libros cuyo estado sea Prestado
-    private void mostrarPrestados(estructuras.NodoAVL<Libro> nodo) {
+    private void mostrarPrestados(Estructuras.NodoAVL<Libro> nodo) {
         // Caso base
         if (nodo == null) {
             return;
@@ -123,7 +123,7 @@ public class Biblioteca {
         return encontrados;
     }
     // Método recursivo que recorre el árbol
-    private void buscarPorTitulo(NodoAVL<Libro> nodo, String título, ListaEnlazada<Libro> encontrados) {
+    private void buscarPorTitulo(NodoAVL<Libro> nodo, String titulo, ListaEnlazada<Libro> encontrados) {
         // Caso base
         if (nodo == null) {
             return;
@@ -165,7 +165,7 @@ public class Biblioteca {
         return encontrados;
     }
     // Método recursivo
-    private void buscarPorCategoria(NodoAVL<Libro> nodo, String categoría, ListaEnlazada<Libro> encontrados) {
+    private void buscarPorCategoria(NodoAVL<Libro> nodo, String categoria, ListaEnlazada<Libro> encontrados) {
         if (nodo == null) {
             return;
         }
