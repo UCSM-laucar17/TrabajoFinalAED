@@ -1,6 +1,5 @@
 package Modelos;
 public class Libro implements Comparable<Libro> {
-
     // Atributos
     private int codigo;
     private String titulo;
@@ -17,7 +16,7 @@ public class Libro implements Comparable<Libro> {
         this.anio = anio;
         this.estado = estado;
     }
-     // Getters
+    // Getters
     public int getCodigo() {
         return codigo;
     }
@@ -36,7 +35,7 @@ public class Libro implements Comparable<Libro> {
     public boolean getEstado() {
         return estado;
     }
-     // Setters
+    // Setters
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
@@ -55,7 +54,7 @@ public class Libro implements Comparable<Libro> {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-     // Comparable
+    // Comparable
     @Override
     public int compareTo(Libro otro) {
         if (this.codigo < otro.codigo){
