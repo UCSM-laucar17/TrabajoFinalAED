@@ -79,5 +79,21 @@ public class VentanaPrincipal extends JFrame{
             card.show(panelContenido,"REPORTES");
         });
     }
+    private void configurarBoton(JButton boton,int y){
+        boton.setBounds(20,y,170,45);
+        boton.setBackground(Colores.BOTON);
+        boton.setForeground(Color.WHITE);
+        boton.setFocusPainted(false);
+        boton.setBorderPainted(false);
+        boton.setFont(new Font("Segoe UI",Font.BOLD,15));
+        boton.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mouseEntered(java.awt.event.MouseEvent e){
+                boton.setBackground(new Color(41,128,185));
+            }
+            public void mouseExited(java.awt.event.MouseEvent e){
+                boton.setBackground(Colores.BOTON);
+            }
+        });
+    }
 
 }
