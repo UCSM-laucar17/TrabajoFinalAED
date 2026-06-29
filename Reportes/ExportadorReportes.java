@@ -15,6 +15,13 @@ public class ExportadorReportes {
         }
     }
     public static void exportarTXT(String contenido){
+        try{
 
+            BufferedWriter bw=new BufferedWriter(new FileWriter("ReporteBiblioteca.txt"));
+            bw.write(contenido);
+            bw.close();
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
