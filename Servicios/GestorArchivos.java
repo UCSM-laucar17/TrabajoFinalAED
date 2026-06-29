@@ -1,30 +1,20 @@
 package Servicios;
-
 import java.io.*;
 import Estructuras.ListaEnlazada;
 import Modelos.Libro;
+
 public class GestorArchivos {
-
-    /**
-     * Carga libros desde el CSV y los registra en la Biblioteca.
-
-     */
+    //Carga libros desde el CSV y los registra en la Biblioteca
     private static final String RUTA = "libros.csv";
     public static void guardarLibrosCSV(Biblioteca biblioteca) {
-
         try {
-
             BufferedWriter bw = new BufferedWriter(new FileWriter(RUTA));
-
             bw.write("codigo,titulo,autor,categoria,anio,estado");
             bw.newLine();
-
             ListaEnlazada<Libro> lista = biblioteca.obtenerTodosLosLibros();
-
             for(int i=0;i<lista.size();i++){
                 Libro l=lista.obtener(i);
                 String estado;
-
                 if(l.getEstado())
                     estado="Disponible";
                 else
@@ -38,7 +28,6 @@ public class GestorArchivos {
             System.out.println(e.getMessage());
         }
     }
-
     public static void cargarLibrosCSV(Biblioteca biblioteca){
         try{
             BufferedReader br=new BufferedReader(new FileReader(RUTA));
@@ -54,12 +43,9 @@ public class GestorArchivos {
                 boolean estado=datos[5].equalsIgnoreCase("Disponible");
                 biblioteca.registrarLibro(new Libro(codigo,titulo,autor,categoria,anio,estado));
             }
-
             br.close();
         }catch(Exception e){
             System.out.println(e.getMessage());
-
         }
     }
 }
-
