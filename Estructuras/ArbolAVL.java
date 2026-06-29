@@ -23,8 +23,7 @@ public class ArbolAVL<T extends Comparable<T>>
     }
     private void actualizarAltura(NodoAVL<T> nodo) 
     {
-        nodo.altura = 1 + Math.max(obtenerAltura(nodo.izquierdo),
-                                   obtenerAltura(nodo.derecho));
+        nodo.altura = 1 + Math.max(obtenerAltura(nodo.izquierdo),obtenerAltura(nodo.derecho));
     }
     //  Rotaciones
     private NodoAVL<T> rotacionDerecha(NodoAVL<T> y) 
