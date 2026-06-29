@@ -1,5 +1,3 @@
-
-//nueval calse creada excepcion
 package Estructuras;
 
 public class ExcepcionVacia extends Exception {
