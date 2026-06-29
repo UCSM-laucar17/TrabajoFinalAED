@@ -57,4 +57,12 @@ public class PilaGenerica<E> {
         System.arraycopy(arreglo, 0, nuevo, 0, arreglo.length);
         arreglo = nuevo;
     }
+    public String obtenerContenido() {
+
+        if (isEmpty()) {
+            return "No hay préstamos registrados.";
+        }
+
+
+    }
 }
