@@ -1,4 +1,4 @@
-package modelos;
+package Modelos;
 public class Libro implements Comparable<Libro> {
 
     // Atributos
