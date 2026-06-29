@@ -18,8 +18,8 @@ public class SolicitudPrestamo {
         }
         this.codigoEstudiante = codigoEstudiante;
         this.nombreEstudiante = nombreEstudiante;
-        this.codigoLibro      = codigoLibro;
-        this.fechaSolicitud   = LocalDate.now();
+        this.codigoLibro = codigoLibro;
+        this.fechaSolicitud = LocalDate.now();
     }
     public String getCodigoEstudiante(){ return codigoEstudiante; }
     public String getNombreEstudiante() { return nombreEstudiante; }
