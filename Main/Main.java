@@ -21,7 +21,15 @@ public class Main {
 
             // Guardar automáticamente al cerrar
             ventana.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-            
+            ventana.addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e) {
+
+                    GestorArchivos.guardarLibrosCSV(SistemaBiblioteca.biblioteca);
+                    ventana.dispose();
+                    System.exit(0);
+                }
+            });
+            ventana.setVisible(true);
 
         });
 
