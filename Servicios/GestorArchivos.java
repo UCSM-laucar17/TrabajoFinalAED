@@ -1,98 +1,65 @@
 
 import java.io.*;
 import java.util.List;
-
+import Estructuras.ListaEnlazada;
+import Modelos.Libro;
 public class GestorArchivos {
-
-    private static final String RUTA_CSV = "libros.csv";
-    private static final String CABECERA  = "codigo,titulo,autor,categoria,anio,estado";
 
     /**
      * Carga libros desde el CSV y los registra en la Biblioteca.
      * Omite la cabecera y líneas con formato incorrecto.
      * Complejidad: O(n log n) — n inserciones O(log n) en el AVL.
      */
-    public static void cargarLibrosCSV(Biblioteca biblioteca) {
-        File archivo = new File(RUTA_CSV); //Colocar el enlace de la unicabion del txt 
-        if (!archivo.exists()) {
-            System.out.println("Archivo '" + RUTA_CSV + "' no encontrado. Se inicia con catálogo vacío.");
-            return;
-        }
-        int cargados = 0;
-        int errores = 0;
-
-        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
-            String linea;
-            boolean primeraLinea = true;
-
-            while ((linea = br.readLine()) != null) {
-                if (primeraLinea) {
-                    primeraLinea = false;
-                    continue; 
-                }
-
-                linea = linea.trim();
-                if (linea.isEmpty()) continue;
-
-                String[] partes = linea.split(",", 6);
-                if (partes.length < 6) {
-                    errores++;
-                    continue;
-                }
-
-                try {
-                    int codigo = Integer.parseInt(partes[0].trim());
-                    String titulo = partes[1].trim();
-                    String autor = partes[2].trim();
-                    String categoria = partes[3].trim();
-                    int anio = Integer.parseInt(partes[4].trim());
-                    boolean disponible = partes[5].trim().equalsIgnoreCase("Disponible");
-
-                    Libro libro = new Libro(codigo, titulo, autor, categoria, anio, disponible);
-                    
-                    biblioteca.agregarLibro(libro);  
-                    cargados++;
-                } catch (NumberFormatException e) {
-                    System.out.println("  Línea ignorada (formato numérico inválido): " + linea);
-                    errores++;
-                } catch (Exception e) {
-                    System.out.println("  Error al procesar línea: " + linea + " → " + e.getMessage());
-                    errores++;
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error al leer el archivo CSV: " + e.getMessage());
-        }
-        System.out.printf("CSV cargado: %d libros importados, %d líneas con error.%n", cargados, errores);
-    }
-
-    /**
-     * Guarda todos los libros de la Biblioteca en el CSV.
-     * Obtiene la lista mediante inOrden() del AVL (orden por código).
-     * Complejidad: O(n)
-     */
+    private static final String RUTA = "libros.csv";
     public static void guardarLibrosCSV(Biblioteca biblioteca) {
-        List<Libro> libros = biblioteca.obtenerTodosInOrden();
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(RUTA_CSV))) {
-            bw.write(CABECERA);
+        try {
+
+            BufferedWriter bw = new BufferedWriter(new FileWriter(RUTA));
+
+            bw.write("codigo,titulo,autor,categoria,anio,estado");
             bw.newLine();
 
-            for (Libro libro : libros) {
-                String estado = libro.isDisponible() ? "Disponible" : "Prestado";
-                String linea  = String.join(",",
-                        libro.getCodigo(),
-                        libro.getTitulo(),
-                        libro.getAutor(),
-                        libro.getCategoria(),
-                        String.valueOf(libro.getAnio()),
-                        estado);
-                bw.write(linea);
+            ListaEnlazada<Libro> lista = biblioteca.obtenerTodosLosLibros();
+
+            for(int i=0;i<lista.size();i++){
+                Libro l=lista.obtener(i);
+                String estado;
+
+                if(l.getEstado())
+                    estado="Disponible";
+                else
+                    estado="Prestado";
+                bw.write(l.getCodigo()+","+l.getTitulo()+","+l.getAutor()+","+l.getCategoria()+","+l.getAnio()+","+estado);
                 bw.newLine();
             }
-            System.out.println("Catálogo guardado en '" + RUTA_CSV + "' (" + libros.size() + " libros).");
-        } catch (IOException e) {
-            System.out.println("Error al guardar el archivo CSV: " + e.getMessage());
+            bw.close();
+            System.out.println("CSV guardado.");
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void cargarLibrosCSV(Biblioteca biblioteca){
+        try{
+            BufferedReader br=new BufferedReader(new FileReader(RUTA));
+            String linea;
+            br.readLine();
+            while((linea=br.readLine())!=null){
+                String datos[]=linea.split(",");
+                int codigo=Integer.parseInt(datos[0]);
+                String titulo=datos[1];
+                String autor=datos[2];
+                String categoria=datos[3];
+                int anio=Integer.parseInt(datos[4]);
+                boolean estado=datos[5].equalsIgnoreCase("Disponible");
+                biblioteca.registrarLibro(new Libro(codigo,titulo,autor,categoria,anio,estado));
+            }
+
+            br.close();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+
         }
     }
 }
