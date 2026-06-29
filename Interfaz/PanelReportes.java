@@ -98,14 +98,32 @@ public class PanelReportes extends JPanel{
         }
     
 
-   // Archivos de pureba ahora si vienen los finales V1.0
-        private void exportarTXT(){
-            JOptionPane.showMessageDialog(this,"Pendiente.");
-        }
-    
-        private void exportarCSV(){
-            JOptionPane.showMessageDialog(this,"Pendiente.");
-    
-        }
+     private void exportarTXT(){
+        String reporte = generarReporte();
+
+        ExportadorReportes.exportarTXT(reporte);
+        JOptionPane.showMessageDialog(this,"Reporte TXT exportado correctamente.");
+
+    }
+
+    private void exportarCSV(){
+
+        String reporte = generarReporte();
+        ExportadorReportes.exportarCSV(reporte);
+        JOptionPane.showMessageDialog(this,"Reporte CSV exportado correctamente.");
+
+    }
+
+    private String generarReporte(){
+        String texto = "";
+        texto += "========== QUICK LIBRARY ==========\n\n";
+        texto += "TOTAL LIBROS       : "+ SistemaBiblioteca.biblioteca.totalLibros() + "\n";
+        texto += "DISPONIBLES        : "+ SistemaBiblioteca.biblioteca.librosDisponibles() + "\n";
+        texto += "PRESTADOS          : "+ SistemaBiblioteca.biblioteca.librosPrestados() + "\n";
+        texto += "SOLICITUDES        : "+ SistemaBiblioteca.gestorPrestamos.solicitudesPendientes() + "\n";
+        texto += "\n=========== CATÁLOGO ===========\n\n";
+        texto += SistemaBiblioteca.biblioteca.obtenerCatalogoTexto();
+        return texto;
+    }
 
 }
