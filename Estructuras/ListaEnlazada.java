@@ -1,8 +1,8 @@
 package Estructuras;
 
-public class ListaEnlazada<T> {
+public class ListaEnlazada<E> {
     // Primer nodo de la lista
-    private Nodo<T> cabeza;
+    private Nodo<E> cabeza;
     // Cantidad de elementos
     private int tamanio;
     // Constructor
@@ -19,19 +19,19 @@ public class ListaEnlazada<T> {
         return tamanio;
     }
     // Devuelve el primer nodo
-    public Nodo<T> getCabeza() {
+    public Nodo<E> getCabeza() {
         return cabeza;
     }
     // Inserta un elemento al final de la lista
-    public void insertar(T dato) {
-        Nodo<T> nuevo = new Nodo<>(dato);
+    public void insertar(E dato) {
+        Nodo<E> nuevo = new Nodo<>(dato);
         // Si la lista está vacía, el nuevo nodo será la cabeza
         if (cabeza == null) {
             cabeza = nuevo;
             tamanio++;
             return;
         }
-        Nodo<T> actual = cabeza;
+        Nodo<E> actual = cabeza;
         // Avanza hasta el último nodo
         while (actual.getNext() != null) {
             actual = actual.getNext();
@@ -40,12 +40,12 @@ public class ListaEnlazada<T> {
         tamanio++;
     }
     // Obtiene el elemento de una posición
-    public T obtener(int indice) {
+    public E obtener(int indice) {
         // Verifica que el índice sea válido
         if (indice < 0 || indice >= tamanio) {
             return null;
         }
-        Nodo<T> actual = cabeza;
+        Nodo<E> actual = cabeza;
         // Avanza hasta la posición indicada
         for (int i = 0; i < indice; i++) {
             actual = actual.getNext();
@@ -53,12 +53,12 @@ public class ListaEnlazada<T> {
         return actual.getData();
     }
     // Reemplaza el dato de una posición
-    public void set(int indice, T dato) {
+    public void set(int indice, E dato) {
     // Verifica que el índice sea válido
         if (indice < 0 || indice >= tamanio) {
         return;
         }
-        Nodo<T> actual = cabeza;
+        Nodo<E> actual = cabeza;
         // Avanza hasta la posición indicada
         for (int i = 0; i < indice; i++) {
             actual = actual.getNext();
@@ -77,7 +77,7 @@ public class ListaEnlazada<T> {
             tamanio--;
             return;
         }
-        Nodo<T> anterior = cabeza;
+        Nodo<E> anterior = cabeza;
         // Avanza hasta el nodo anterior al que se eliminará
         for (int i = 0; i < indice - 1; i++) {
             anterior = anterior.getNext();
@@ -86,8 +86,8 @@ public class ListaEnlazada<T> {
         tamanio--;
     }
     // Busca un elemento dentro de la lista
-    public boolean contiene(T dato) {
-        Nodo<T> actual = cabeza;
+    public boolean contiene(E dato) {
+        Nodo<E> actual = cabeza;
         // Recorre toda la lista
         while (actual != null) {
             if (actual.getData().equals(dato)) {
@@ -108,7 +108,7 @@ public class ListaEnlazada<T> {
             System.out.println("La lista está vacía.");
             return;
         }
-        Nodo<T> actual = cabeza;
+        Nodo<E> actual = cabeza;
         // Recorre toda la lista mostrando cada elemento
         while (actual != null) {
             System.out.println(actual.getData());
@@ -116,9 +116,9 @@ public class ListaEnlazada<T> {
         }
     } 
     // Devuelve la posición de un elemento
-    public int indiceDe(T dato) {
+    public int indiceDe(E dato) {
     
-        Nodo<T> actual = cabeza;
+        Nodo<E> actual = cabeza;
         int indice = 0;
         // Recorre la lista buscando el dato
         while (actual != null) {
