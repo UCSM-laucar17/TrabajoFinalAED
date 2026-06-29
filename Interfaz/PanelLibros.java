@@ -315,5 +315,31 @@ private void iniciarComponentes() {
     private void actualizarCatalogo(){
         areaCatalogo.setText(SistemaBiblioteca.biblioteca.obtenerCatalogoTexto());
     }
+    private void agregarValidaciones() {//el codigo y año solo vana a ser numero s
+        KeyAdapter soloNumeros = new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE) {
+                    e.consume();
+                }
+            }
+        };
+        txtCodigo.addKeyListener(soloNumeros);
+        txtAnio.addKeyListener(soloNumeros);
+    }
+
+    private void agregarHover(JButton boton){ //mejora de botones en interfaz   
+
+        boton.addMouseListener(new MouseAdapter() {
+
+            public void mouseEntered(MouseEvent e) {
+                boton.setBackground(new Color(41,128,185));
+            }
+            public void mouseExited(MouseEvent e) {
+                boton.setBackground(new Color(52,152,219));
+            }
+        });
+
+    }
 
 }
