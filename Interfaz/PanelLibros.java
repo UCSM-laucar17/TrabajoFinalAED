@@ -223,7 +223,7 @@ private void iniciarComponentes() {
             JOptionPane.showMessageDialog(this,"Código y año deben ser números.");
         }
     }
-private void buscarLibro(){
+    private void buscarLibro(){
         try{
             //busca por codigo 
             int codigo = Integer.parseInt(txtCodigo.getText());
@@ -278,5 +278,42 @@ private void buscarLibro(){
         catch(Exception ex){
             JOptionPane.showMessageDialog(this,"Código inválido.");
         }
+    }
+    private void eliminarLibro(){
+        try{
+            int opcion = JOptionPane.showConfirmDialog(this,"¿Desea eliminar este libro?","Confirmar",JOptionPane.YES_NO_OPTION);
+            if(opcion!=JOptionPane.YES_OPTION){
+                return;
+            }
+            int codigo=Integer.parseInt(txtCodigo.getText());
+            SistemaBiblioteca.biblioteca.eliminarLibro(codigo);
+            actualizarCatalogo();
+            limpiarCampos();
+            JOptionPane.showMessageDialog(this,"Libro eliminado correctamente."
+            );
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(this,"Código inválido."
+            );
+        }
+    }
+
+    //lo que sea eliminao debe borrarse del sregistro
+    //despues de las consultas se limpian los campos
+    private void limpiarCampos(){
+        txtCodigo.setText("");
+        txtTitulo.setText("");
+        txtAutor.setText("");
+        txtCategoria.setText("");
+        txtAnio.setText("");
+        rbDisponible.setSelected(true);
+        txtCodigo.requestFocus();
+    }
+
+
+    //mostrar biblioteca actualizaada
+    private void actualizarCatalogo(){
+        areaCatalogo.setText(SistemaBiblioteca.biblioteca.obtenerCatalogoTexto());
+    }
 
 }
