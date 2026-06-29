@@ -4,9 +4,9 @@ import java.time.LocalDate;
 public class SolicitudPrestamo {
     private String codigoEstudiante;
     private String nombreEstudiante;
-    private String codigoLibro;
+    private int codigoLibro;
     private LocalDate fechaSolicitud;
-    public SolicitudPrestamo(String código Estudiante, String nombreEstudiante, String codigoLibro) {
+    public SolicitudPrestamo(String código Estudiante, String nombreEstudiante, int codigoLibro) {
         if (codigoEstudiante == null) {
             throw new IllegalArgumentException("El código del estudiante no puede estar vacío.");
         }
@@ -23,11 +23,10 @@ public class SolicitudPrestamo {
     }
     public String getCodigoEstudiante(){ return codigoEstudiante; }
     public String getNombreEstudiante() { return nombreEstudiante; }
-    public String getCodigoLibro() { return codigoLibro; }
+    public int getCodigoLibro() { return codigoLibro; }
     public LocalDate getFechaSolicitud(){ return fechaSolicitud; }
     @Override
     public String toString() {
-        return String.format("[Solicitud] Estudiante: %s (%s) | Libro: %s | Fecha: %s",
-                nombreEstudiante, codigoEstudiante, codigoLibro, fechaSolicitud);
+        return String.format("[Solicitud] Estudiante: %s (%s) | Libro: %s | Fecha: %s", nombreEstudiante, codigoEstudiante, codigoLibro, fechaSolicitud);
     }
 }
