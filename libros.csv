@@ -1,0 +1,31 @@
+codigo,titulo,autor,categoria,anio,estado
+1001,Cien años de soledad,Gabriel García Márquez,Novela,1967,Disponible
+1002,Don Quijote de la Mancha,Miguel de Cervantes,Novela,1605,Disponible
+1003,La ciudad y los perros,Mario Vargas Llosa,Novela,1963,Prestado
+1004,El principito,Antoine de Saint-Exupéry,Infantil,1943,Disponible
+1005,1984,George Orwell,Ciencia Ficción,1949,Disponible
+1006,Rebelión en la granja,George Orwell,Fábula,1945,Prestado
+1007,Drácula,Bram Stoker,Terror,1897,Disponible
+1008,Frankenstein,Mary Shelley,Terror,1818,Disponible
+1009,El Hobbit,J.R.R. Tolkien,Fantasía,1937,Disponible
+1010,El Señor de los Anillos,J.R.R. Tolkien,Fantasía,1954,Prestado
+1011,Harry Potter y la piedra filosofal,J.K. Rowling,Fantasía,1997,Disponible
+1012,Harry Potter y la cámara secreta,J.K. Rowling,Fantasía,1998,Disponible
+1013,Crónica de una muerte anunciada,Gabriel García Márquez,Novela,1981,Disponible
+1014,Rayuela,Julio Cortázar,Novela,1963,Prestado
+1015,Ficciones,Jorge Luis Borges,Cuentos,1944,Disponible
+1016,El Aleph,Jorge Luis Borges,Cuentos,1949,Disponible
+1017,Pedro Páramo,Juan Rulfo,Novela,1955,Disponible
+1018,La metamorfosis,Franz Kafka,Novela,1915,Disponible
+1019,El proceso,Franz Kafka,Novela,1925,Prestado
+1020,Los miserables,Victor Hugo,Novela,1862,Disponible
+1021,Orgullo y prejuicio,Jane Austen,Romance,1813,Disponible
+1022,Moby Dick,Herman Melville,Aventura,1851,Disponible
+1023,La Odisea,Homero,Clásico,-700,Disponible
+1024,La Ilíada,Homero,Clásico,-750,Prestado
+1025,El código Da Vinci,Dan Brown,Suspenso,2003,Disponible
+1026,Ángeles y demonios,Dan Brown,Suspenso,2000,Disponible
+1027,Inferno,Dan Brown,Suspenso,2013,Prestado
+1028,El nombre de la rosa,Umberto Eco,Misterio,1980,Disponible
+1029,Sapiens,Yuval Noah Harari,Historia,2011,Disponible
+1030,Hábitos Atómicos,James Clear,Desarrollo Personal,2018,Disponible
