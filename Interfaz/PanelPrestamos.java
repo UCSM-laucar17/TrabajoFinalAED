@@ -134,6 +134,7 @@ public class PanelPrestamos extends JPanel {
         boolean exito =SistemaBiblioteca.gestorPrestamos.atenderSolicitud();
         if (exito) {
             JOptionPane.showMessageDialog(this,"Solicitud atendida correctamente.");
+            actualizarHistorial();
         } else {
             JOptionPane.showMessageDialog(this,"No existen solicitudes pendientes.");
         }
