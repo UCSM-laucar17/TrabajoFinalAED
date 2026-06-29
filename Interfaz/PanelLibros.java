@@ -252,13 +252,15 @@ private void iniciarComponentes() {
 
     }
     //modificar con atributos comletos del libro
+    //Modificar con comprobacion por parte del ususario
     private void modificarLibro(){
-
         try{
+            int opcion = JOptionPane.showConfirmDialog(this,"¿Guardar cambios?","Modificar",JOptionPane.YES_NO_OPTION);
+            if(opcion!=JOptionPane.YES_OPTION){
+                return;
+            }
             int codigo=Integer.parseInt(txtCodigo.getText());
-            //lamma a modificar con atributos de libro 
-            SistemaBiblioteca.biblioteca.modificarLibro(codigo,txtTitulo.getText(),txtAutor.getText(),txtCategoria.getText(),Integer.parseInt(txtAnio.getText()),rbDisponible.isSelected()
-            );
+            SistemaBiblioteca.biblioteca.modificarLibro(codigo,txtTitulo.getText(),txtAutor.getText(),txtCategoria.getText(),Integer.parseInt(txtAnio.getText()),rbDisponible.isSelected());
             actualizarCatalogo();
             JOptionPane.showMessageDialog(this,"Libro modificado.");
         }
@@ -266,19 +268,8 @@ private void iniciarComponentes() {
             JOptionPane.showMessageDialog(this,"Datos incorrectos.");
         }
     }
-    private void eliminarLibro(){
+    //nuevo eliminar(añade confirmacion para eliminar)
 
-        try{//biusca y eliminar un libro por su codigo
-            int codigo=Integer.parseInt(txtCodigo.getText());
-            SistemaBiblioteca.biblioteca.eliminarLibro(codigo);
-            actualizarCatalogo();
-            limpiarCampos();
-            JOptionPane.showMessageDialog(this,"Libro eliminado.");
-        }
-        catch(Exception ex){
-            JOptionPane.showMessageDialog(this,"Código inválido.");
-        }
-    }
     private void eliminarLibro(){
         try{
             int opcion = JOptionPane.showConfirmDialog(this,"¿Desea eliminar este libro?","Confirmar",JOptionPane.YES_NO_OPTION);
