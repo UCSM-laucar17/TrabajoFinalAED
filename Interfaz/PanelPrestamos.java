@@ -91,4 +91,42 @@ public class PanelPrestamos extends JPanel {
         });
         return boton;
     }
+
+    //metodos llamados con cada boton
+    private void agregarEventos(){
+        btnRegistrar.addActionListener(e->registrarSolicitud());
+        btnConsultar.addActionListener(e->consultarSiguiente());
+        btnAtender.addActionListener(e->atenderSolicitud());
+        btnDevolver.addActionListener(e->devolverLibro());
+        btnLimpiar.addActionListener(e->limpiar());
+    }
+
+    //Verifica y añade una solicitud de prestamo
+    private void registrarSolicitud() {
+        try {
+
+            String codigoEst = txtCodigoEstudiante.getText().trim();
+            String nombre = txtNombre.getText().trim();
+            int codigoLibro = Integer.parseInt(txtCodigoLibro.getText().trim());
+
+            //Comporbacion de integridad de los datos
+            if (codigoEst.isEmpty() || nombre.isEmpty()){
+                JOptionPane.showMessageDialog(this,"Complete todos los campos.");
+                return;
+
+            }
+            boolean exito = SistemaBiblioteca.gestorPrestamos.registrarSolicitud(codigoEst, nombre, codigoLibro);
+            if (exito) {
+                JOptionPane.showMessageDialog(this,"Solicitud registrada correctamente.");
+                actualizarSolicitudes();
+                limpiar();
+
+            } else {
+                JOptionPane.showMessageDialog(this,"No existe un libro con ese código.");
+
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this,"Código del libro inválido.");
+        }
+    }
 }
