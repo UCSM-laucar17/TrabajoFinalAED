@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
+import Servicios.SistemaBiblioteca;
+
+
 public class PanelPrestamos extends JPanel {
 
     //atributos de operaciones para prestamos
@@ -173,5 +176,9 @@ public class PanelPrestamos extends JPanel {
         txtCodigoLibro.setText("");
         txtCodigoEstudiante.requestFocus();
 
+    }
+    private void consultarSiguiente() {
+        JOptionPane.showMessageDialog(this,SistemaBiblioteca.gestorPrestamos.obtenerSiguienteSolicitud()
+        );
     }
 }
