@@ -144,7 +144,9 @@ public class PanelPrestamos extends JPanel {
         //despues de cualquier salida actualiza la biblioteca
         actualizarSolicitudes();
     }
-    
+    private void consultarSiguiente() {
+        JOptionPane.showMessageDialog(this,SistemaBiblioteca.gestorPrestamos.obtenerSiguienteSolicitud());
+    }
     private void devolverLibro() {
         try {
             //por si acaso se convierte el codigo del libro a entero
@@ -177,8 +179,5 @@ public class PanelPrestamos extends JPanel {
         txtCodigoEstudiante.requestFocus();
 
     }
-    private void consultarSiguiente() {
-        JOptionPane.showMessageDialog(this,SistemaBiblioteca.gestorPrestamos.obtenerSiguienteSolicitud()
-        );
-    }
+
 }
