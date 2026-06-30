@@ -27,10 +27,11 @@ public class PanelReportes extends JPanel{
         titulo.setHorizontalAlignment(JLabel.CENTER);
         titulo.setFont(new Font("Segoe UI",Font.BOLD,26));
         titulo.setBorder(new EmptyBorder(20,10,20,10));
+        titulo.setForeground(Colores.TEXTO);
         add(titulo,BorderLayout.NORTH);
             JPanel centro = new JPanel(new GridLayout(2,2,20,20));
         centro.setBorder(new EmptyBorder(30,40,30,40));
-        centro.setBackground(Colores.TITULO);
+        centro.setBackground(Colores.FONDO);
 
         lblTotal = crearValor();
         lblDisponibles = crearValor();
