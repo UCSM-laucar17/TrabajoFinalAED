@@ -13,12 +13,12 @@ public class GestorPrestamos {
         this.historialPrestamos = new PilaGenerica<>();
     }
     // solicitudes
-    public boolean registrarSolicitud(String codEstudiante,String nomEstudiante,int codLibro) {
+    public boolean registrarSolicitud(String codigoEstudiante,String nomEstudiante,int codLibro) {
         Libro libro = biblioteca.buscarCodigo(codLibro);
         if (libro == null) {
             return false;
         }
-        SolicitudPrestamo solicitud =new SolicitudPrestamo(codEstudiante,nomEstudiante,codLibro);
+        SolicitudPrestamo solicitud =new SolicitudPrestamo(codigoEstudiante,nomEstudiante,codLibro);
         colaSolicitudes.enqueue(solicitud);
         return true;
     }
