@@ -45,7 +45,7 @@ public class PanelReportes extends JPanel{
 
         add(centro, BorderLayout.CENTER);
         JPanel botones = new JPanel();
-        botones.setBackground(new Color(245,247,250));
+        botones.setBackground(Colores.FONDO);
         btnActualizar = crearBoton("Actualizar");
         btnExportarTXT = crearBoton("Exportar TXT");
         btnExportarCSV = crearBoton("Exportar CSV");
