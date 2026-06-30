@@ -10,22 +10,24 @@ public class ArbolAVL<T extends Comparable<T>>
     public NodoAVL<T> getRaiz() {
     return raiz;
     }
-    // Altura y balance
+    // retorna 0 si el nodo es null, evita NullPointerException al calcular alturas
     private int obtenerAltura(NodoAVL<T> nodo) 
     {
         if (nodo == null) return 0;
         return nodo.altura;
     }
+    // balance positivo = pesa más a la izquierda, negativo = pesa más a la derecha
     private int obtenerBalance(NodoAVL<T> nodo) 
     {
         if (nodo == null) return 0;
         return obtenerAltura(nodo.izquierdo) - obtenerAltura(nodo.derecho);
     }
+    // se recalcula después de cada rotación o inserción
     private void actualizarAltura(NodoAVL<T> nodo) 
     {
         nodo.altura = 1 + Math.max(obtenerAltura(nodo.izquierdo),obtenerAltura(nodo.derecho));
     }
-    //  Rotaciones
+    // caso izquierda-izquierda: el hijo izquierdo sube y el nodo actual baja a la derecha
     private NodoAVL<T> rotacionDerecha(NodoAVL<T> y) 
     {
         NodoAVL<T> x  = y.izquierdo;
@@ -36,6 +38,7 @@ public class ArbolAVL<T extends Comparable<T>>
         actualizarAltura(x);
         return x;
     }
+    // caso derecha-derecha: el hijo derecho sube y el nodo actual baja a la izquierda
     private NodoAVL<T> rotacionIzquierda(NodoAVL<T> x) 
     {
         NodoAVL<T> y  = x.derecho;
@@ -58,17 +61,18 @@ public class ArbolAVL<T extends Comparable<T>>
         nodo.derecho = rotacionDerecha(nodo.derecho);
         return rotacionIzquierda(nodo);
     }
+    // verifica el factor de balance y aplica la rotación correspondiente
     private NodoAVL<T> balancear(NodoAVL<T> nodo) 
     {
         actualizarAltura(nodo);
         int balance = obtenerBalance(nodo);
-        // Izquierda - Izquierda
+        // balance > 1 significa desbalance hacia la izquierda
         if (balance > 1 && obtenerBalance(nodo.izquierdo) >= 0)
             return rotacionDerecha(nodo);
         // Izquierda - Derecha
         if (balance > 1 && obtenerBalance(nodo.izquierdo) < 0)
             return rotacionDobleDerecha(nodo);
-        // Derecha - Derecha
+        // balance < -1 significa desbalance hacia la derecha
         if (balance < -1 && obtenerBalance(nodo.derecho) <= 0)
             return rotacionIzquierda(nodo);
         // Derecha - Izquierda
@@ -76,11 +80,12 @@ public class ArbolAVL<T extends Comparable<T>>
             return rotacionDobleIzquierda(nodo);
         return nodo;
     }
-    // Insertar
+    // método público que inicia la inserción desde la raíz
     public void insertar(T dato) 
     {
         raiz = insertar(raiz, dato);
     }
+    // desciende recursivamente hasta encontrar la posición correcta e inserta
     private NodoAVL<T> insertar(NodoAVL<T> nodo, T dato) 
     {
         if (nodo == null) return new NodoAVL<>(dato);
@@ -91,13 +96,15 @@ public class ArbolAVL<T extends Comparable<T>>
             nodo.derecho = insertar(nodo.derecho, dato);
         else
             return nodo; // código duplicado, no se inserta
+        // al regresar de la recursión se rebalancea cada nodo afectado
         return balancear(nodo);
     }
-    // Buscar
+    // método público que inicia la búsqueda desde la raíz
     public T buscar(T dato) 
     {
         return buscar(raiz, dato);
     }
+    // descarta mitad del árbol en cada paso gracias al orden del AVL
     private T buscar(NodoAVL<T> nodo, T dato) 
     {
         if (nodo == null) return null;
@@ -106,7 +113,7 @@ public class ArbolAVL<T extends Comparable<T>>
         if (cmp > 0) return buscar(nodo.derecho, dato);
         return nodo.dato;
     }
-    //Recorridos
+    // inOrden produce los elementos ordenados de menor a mayor
     public void inOrden() 
     {
         inOrden(raiz);
@@ -119,6 +126,7 @@ public class ArbolAVL<T extends Comparable<T>>
         System.out.print(nodo.dato + "  ");
         inOrden(nodo.derecho);
     }
+    // preOrden: raíz, izquierdo, derecho
     public void preOrden() {
         preOrden(raiz);
         System.out.println();
@@ -130,6 +138,7 @@ public class ArbolAVL<T extends Comparable<T>>
         preOrden(nodo.izquierdo);
         preOrden(nodo.derecho);
     }
+    // postOrden: izquierdo, derecho, raíz
     public void postOrden()
     {
         postOrden(raiz);
@@ -174,6 +183,7 @@ public class ArbolAVL<T extends Comparable<T>>
     {
         return raiz == null;
     }
+    // método público que inicia la eliminación desde la raíz
     public void eliminar(T dato) {
     raiz = eliminar(raiz, dato);
 }
@@ -186,21 +196,23 @@ public class ArbolAVL<T extends Comparable<T>>
         } else if (cmp > 0) {
             nodo.derecho = eliminar(nodo.derecho, dato);
         } else {
-            // Caso 1: sin hijos
+            // caso 1: nodo hoja, se elimina directamente
             if (nodo.izquierdo == null && nodo.derecho == null)
                 return null;
-            // Caso 2: un hijo
+            // caso 2: un solo hijo, se reemplaza con ese hijo
             if (nodo.izquierdo == null)
                 return nodo.derecho;
             if (nodo.derecho == null)
                 return nodo.izquierdo;
-            // Caso 3: dos hijos
+            // caso 3: dos hijos, se reemplaza con el sucesor inorden (mínimo del subárbol derecho)
             NodoAVL<T> sucesor = obtenerMinimo(nodo.derecho);
             nodo.dato = sucesor.dato;
             nodo.derecho = eliminar(nodo.derecho, sucesor.dato);
         }
+        // rebalancear al subir de la recursión
         return balancear(nodo);
     }
+        // baja por la izquierda hasta encontrar el nodo más pequeño
         private NodoAVL<T> obtenerMinimo(NodoAVL<T> nodo) {
         while (nodo.izquierdo != null) {
             nodo = nodo.izquierdo;
