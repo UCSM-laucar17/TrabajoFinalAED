@@ -22,63 +22,175 @@ public class PanelPrestamos extends JPanel {
     public PanelPrestamos(){
         iniciarComponentes();
     }
-    private void iniciarComponentes(){
-        //diseño y disposicion de la pagina
-        setLayout(new BorderLayout());
-        setBackground(new Color(245,247,250));
+    private void iniciarComponentes() {
+        setLayout(new BorderLayout(15,15));
+        setBackground(Colores.FONDO);
+
+        // Título
         JLabel titulo = new JLabel("GESTIÓN DE PRÉSTAMOS");
-        titulo.setHorizontalAlignment(JLabel.CENTER);
-        titulo.setFont(new Font("Segoe UI",Font.BOLD,26));
-        titulo.setBorder(new EmptyBorder(20,10,20,10));
-        add(titulo,BorderLayout.NORTH);
-        JPanel formulario = new JPanel(new GridLayout(8,2,10,10));
-        formulario.setBorder(new EmptyBorder(20,30,20,30));
-        formulario.setBackground(Color.WHITE);
-        formulario.add(new JLabel("Código Estudiante"));
+        titulo.setHorizontalAlignment(SwingConstants.CENTER);
+        titulo.setFont(new Font("Segoe UI", Font.BOLD, 26));
+        titulo.setBorder(new EmptyBorder(15,10,15,10));
+        titulo.setForeground(Colores.ENCABEZADO);
+        add(titulo, BorderLayout.NORTH);
+
+
+        // Panel Izquierdo (Formulario)
+        JPanel panelFormulario = new JPanel();
+        panelFormulario.setBackground(Colores.TARJETA);
+        panelFormulario.setBorder(
+            new CompoundBorder(
+                new TitledBorder("Datos del Préstamo"),
+                new EmptyBorder(10,75,10,75)
+            )
+        );
+        panelFormulario.setLayout(new GridBagLayout());
+        
+
+        GridBagConstraints c = new GridBagConstraints();
+        c.insets = new Insets(10,10,10,10);
+        c.fill = GridBagConstraints.HORIZONTAL;
+
+        // Código Estudiante
+        c.gridx = 0;    
+        c.gridy = 0;
+        c.weightx = 0;
+        panelFormulario.add(new JLabel("Código Estudiante"), c);
+
         txtCodigoEstudiante = new JTextField();
-        formulario.add(txtCodigoEstudiante);
-        formulario.add(new JLabel("Nombre"));
+        txtCodigoEstudiante.setPreferredSize(new Dimension(125, 20));
+        c.gridx = 1;
+         c.weightx = 1;
+        panelFormulario.add(txtCodigoEstudiante, c);
+
+        // Nombre
+        c.gridx = 0;
+        c.gridy++;
+        panelFormulario.add(new JLabel("Nombre"), c);
+
         txtNombre = new JTextField();
-        formulario.add(txtNombre);
-        formulario.add(new JLabel("Código Libro"));
+        c.gridx = 1;
+        
+        panelFormulario.add(txtNombre, c);
+
+        // Código Libro
+        c.gridx = 0;
+        c.gridy++;
+        panelFormulario.add(new JLabel("Código Libro"), c);
+
         txtCodigoLibro = new JTextField();
-        formulario.add(txtCodigoLibro);
-        //Botones para acciones del ususario
+        c.gridx = 1;
+        panelFormulario.add(txtCodigoLibro, c);
+
+        // Panel de Botones
+        JPanel panelBotones = new JPanel(new GridLayout(5,1,10,10));
+        panelBotones.setBackground(Colores.FONDO);
+
         btnRegistrar = crearBoton("Registrar Solicitud");
         btnConsultar = crearBoton("Consultar Siguiente");
         btnAtender = crearBoton("Atender Solicitud");
         btnDevolver = crearBoton("Registrar Devolución");
         btnLimpiar = crearBoton("Limpiar");
-        formulario.add(btnRegistrar);
-        formulario.add(btnConsultar);
-        formulario.add(btnAtender);
-        formulario.add(btnDevolver);
-        formulario.add(btnLimpiar);
-        formulario.add(new JLabel());
-        add(formulario,BorderLayout.WEST);
+
+        panelBotones.add(btnRegistrar);
+        panelBotones.add(btnConsultar);
+        panelBotones.add(btnAtender);
+        panelBotones.add(btnDevolver);
+        panelBotones.add(btnLimpiar);
+
+        c.gridx = 0;
+        c.gridy++;
+        c.gridwidth = 2;
+        c.fill = GridBagConstraints.BOTH;
+        panelFormulario.add(panelBotones, c);
+
+        add(panelFormulario, BorderLayout.WEST);
+
+
+        // Panel Derecho (Historial)
+        JPanel panelHistorial = new JPanel(new BorderLayout());
+        panelHistorial.setBackground(Colores.TARJETA);
+        panelHistorial.setBorder(new TitledBorder("Historial de Préstamos"));
+
         areaHistorial = new JTextArea();
         areaHistorial.setEditable(false);
-        areaHistorial.setFont(new Font("Consolas",Font.PLAIN,13));
+        areaHistorial.setFont(new Font("Consolas", Font.PLAIN, 14));
+        areaHistorial.setMargin(new Insets(10,10,10,10));
+
         scroll = new JScrollPane(areaHistorial);
-        scroll.setBorder(new TitledBorder("Historial"));
-        add(scroll,BorderLayout.CENTER);
+        panelHistorial.add(scroll, BorderLayout.CENTER);
+
+        add(panelHistorial, BorderLayout.CENTER);
+
+        // Ajustes del área de texto
+        areaHistorial.setLineWrap(true);
+        areaHistorial.setWrapStyleWord(true);
+        areaHistorial.setCaretPosition(0);
+        areaHistorial.setBackground(Colores.TARJETA);
+
+        // Hover de botones
+        agregarHover(btnRegistrar);
+        agregarHover(btnConsultar);
+        agregarHover(btnAtender);
+        agregarHover(btnDevolver);
+        agregarHover(btnLimpiar);
+
+        // Eventos
         agregarEventos();
+    }
+    private void agregarHover(JButton boton){ //mejora de botones en interfaz   
+        boton.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                boton.setBackground(Colores.BOTON_HOVER);
+            }
+            public void mouseExited(MouseEvent e) {
+                boton.setBackground((Colores.BOTON));
+            }
+            public void mousePressed(MouseEvent e) {
+                // Cuando se mantiene presionado el botón
+                boton.setBackground(Colores.BOTON_PRESIONADO);
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                // Cuando se suelta el clic
+                if (boton.getBounds().contains(e.getPoint())) {
+                    boton.setBackground(Colores.BOTON_HOVER); // Si se soltó dentro
+                } else {
+                    boton.setBackground(Colores.BOTON); // Si se soltó fuera
+                }
+            }
+        });
     }
     //crar botones dentro de los lables ya definidos
     private JButton crearBoton(String texto){
         JButton boton = new JButton(texto);
-        boton.setBackground(new Color(52,152,219));
+        boton.setBackground(Colores.BOTON);
         boton.setForeground(Color.WHITE);
         boton.setFocusPainted(false);
+        boton.setContentAreaFilled(false);
+        boton.setOpaque(true);
         boton.setFont(new Font("Segoe UI",Font.BOLD,14));
         //cambio de diseño del boton cuando se selecciona
         boton.addMouseListener(new MouseAdapter(){
             public void mouseEntered(MouseEvent e){
-                boton.setBackground(new Color(41,128,185));
+                boton.setBackground(Colores.BOTON_HOVER);
             }
             public void mouseExited(MouseEvent e){
-                boton.setBackground(new Color(52,152,219));
+                boton.setBackground(Colores.BOTON);
             }
+            public void mousePressed(MouseEvent e) {
+                // Cuando se mantiene presionado el botón
+                boton.setBackground(Colores.BOTON_PRESIONADO);
+            }
+            public void mouseReleased(MouseEvent e) {
+                // Cuando se suelta el clic
+                if (boton.getBounds().contains(e.getPoint())) {
+                    boton.setBackground(Colores.BOTON_HOVER); // Si se soltó dentro
+                } else {
+                    boton.setBackground(Colores.BOTON); // Si se soltó fuera
+                }
+            }
+            
         });
         return boton;
     }
