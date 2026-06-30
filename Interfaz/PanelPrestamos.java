@@ -31,7 +31,7 @@ public class PanelPrestamos extends JPanel {
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
         titulo.setFont(new Font("Segoe UI", Font.BOLD, 26));
         titulo.setBorder(new EmptyBorder(15,10,15,10));
-        titulo.setForeground(Colores.TITULO);
+        titulo.setForeground(Colores.TEXTO);
         add(titulo, BorderLayout.NORTH);
 
 
