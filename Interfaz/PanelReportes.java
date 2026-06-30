@@ -1,5 +1,6 @@
 package Interfaz;
 import java.awt.*;
+import java.awt.color.ColorSpace;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -21,28 +22,27 @@ public class PanelReportes extends JPanel{
     }
     private void iniciarComponentes(){
         setLayout(new BorderLayout());
-        setBackground(new Color(245,247,250));
+        setBackground((Colores.FONDO));
         JLabel titulo = new JLabel("REPORTES");
         titulo.setHorizontalAlignment(JLabel.CENTER);
         titulo.setFont(new Font("Segoe UI",Font.BOLD,26));
         titulo.setBorder(new EmptyBorder(20,10,20,10));
         add(titulo,BorderLayout.NORTH);
-        JPanel centro = new JPanel(new GridLayout(4,2,15,15));
-        centro.setBorder(new EmptyBorder(30,50,30,50));
-        centro.setBackground(Color.WHITE);
-        centro.add(new JLabel("Total de libros"));
-        lblTotal = new JLabel();
-        centro.add(lblTotal);
-        centro.add(new JLabel("Libros disponibles"));
-        lblDisponibles = new JLabel();
-        centro.add(lblDisponibles);
-        centro.add(new JLabel("Libros prestados"));
-        lblPrestados = new JLabel();
-        centro.add(lblPrestados);
-        centro.add(new JLabel("Solicitudes pendientes"));
-        lblSolicitudes = new JLabel();
-        centro.add(lblSolicitudes);
-        add(centro,BorderLayout.CENTER);
+            JPanel centro = new JPanel(new GridLayout(2,2,20,20));
+        centro.setBorder(new EmptyBorder(30,40,30,40));
+        centro.setBackground(Colores.FONDO);
+
+        lblTotal = crearValor();
+        lblDisponibles = crearValor();
+        lblPrestados = crearValor();
+        lblSolicitudes = crearValor();
+
+        centro.add(crearTarjeta("Total de Libros", lblTotal));
+        centro.add(crearTarjeta("Libros Disponibles", lblDisponibles));
+        centro.add(crearTarjeta("Libros Prestados", lblPrestados));
+        centro.add(crearTarjeta("Solicitudes Pendientes", lblSolicitudes));
+
+        add(centro, BorderLayout.CENTER);
         JPanel botones = new JPanel();
         botones.setBackground(new Color(245,247,250));
         btnActualizar = crearBoton("Actualizar");
@@ -56,16 +56,31 @@ public class PanelReportes extends JPanel{
     }
     private JButton crearBoton(String texto){
             JButton boton = new JButton(texto);
-            boton.setBackground(new Color(52,152,219));
+            boton.setBackground((Colores.BOTON));
             boton.setForeground(Color.WHITE);
             boton.setFocusPainted(false);
+            boton.setContentAreaFilled(false);
+            boton.setOpaque(true);
             boton.setFont(new Font("Segoe UI",Font.BOLD,14));
             boton.addMouseListener(new MouseAdapter(){
                 public void mouseEntered(MouseEvent e){
-                    boton.setBackground(new Color(41,128,185));
+                    boton.setBackground(Colores.BOTON_HOVER);
                 }
                 public void mouseExited(MouseEvent e){
-                    boton.setBackground(new Color(52,152,219));
+                    boton.setBackground(Colores.BOTON);
+                }
+                public void mousePressed(MouseEvent e) {
+                    // Cuando se mantiene presionado el botón
+                    boton.setBackground(Colores.BOTON_PRESIONADO);
+                }
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    // Cuando se suelta el clic
+                    if (boton.getBounds().contains(e.getPoint())) {
+                        boton.setBackground(Colores.BOTON_HOVER); // Si se soltó dentro
+                    } else {
+                        boton.setBackground(Colores.BOTON); // Si se soltó fuera
+                    }
                 }
             });
             return boton;
@@ -102,6 +117,32 @@ public class PanelReportes extends JPanel{
         texto += "\n=========== CATÁLOGO ===========\n\n";
         texto += SistemaBiblioteca.biblioteca.obtenerCatalogoTexto();
         return texto;
+    }
+    private JLabel crearValor() {
+        JLabel lbl = new JLabel("0");
+        lbl.setHorizontalAlignment(SwingConstants.CENTER);
+        lbl.setFont(new Font("Segoe UI", Font.BOLD, 30));
+        lbl.setForeground(Colores.ENCABEZADO);
+        return lbl;
+    }
+
+    private JPanel crearTarjeta(String titulo, JLabel valor) {
+
+        JPanel tarjeta = new JPanel(new BorderLayout(5,5));
+        tarjeta.setBackground(Colores.TARJETA);
+        tarjeta.setBorder(new CompoundBorder(
+                new LineBorder(new Color(210,210,210),1,true),
+                new EmptyBorder(15,15,15,15)));
+
+        JLabel txt = new JLabel(titulo);
+        txt.setHorizontalAlignment(SwingConstants.CENTER);
+        txt.setFont(new Font("Segoe UI",Font.BOLD,16));
+        txt.setForeground(Colores.TEXTO);
+
+        tarjeta.add(txt, BorderLayout.NORTH);
+        tarjeta.add(valor, BorderLayout.CENTER);
+
+        return tarjeta;
     }
 
 }
