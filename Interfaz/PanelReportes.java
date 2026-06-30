@@ -30,7 +30,7 @@ public class PanelReportes extends JPanel{
         add(titulo,BorderLayout.NORTH);
             JPanel centro = new JPanel(new GridLayout(2,2,20,20));
         centro.setBorder(new EmptyBorder(30,40,30,40));
-        centro.setBackground(Colores.FONDO);
+        centro.setBackground(Colores.TITULO);
 
         lblTotal = crearValor();
         lblDisponibles = crearValor();
