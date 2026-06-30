@@ -6,7 +6,7 @@ public class SolicitudPrestamo {
     private String nombreEstudiante;
     private int codigoLibro;
     private LocalDate fechaSolicitud;
-    public SolicitudPrestamo(String codigo Estudiante, String nombreEstudiante, int codigoLibro) {
+    public SolicitudPrestamo(String codigoEstudiante, String nombreEstudiante, int codigoLibro) {
         if (codigoEstudiante == null) {
             throw new IllegalArgumentException("El código del estudiante no puede estar vacío.");
         }
