@@ -31,7 +31,7 @@ public class PanelLibros extends JPanel {
         setLayout(new BorderLayout(15,15));
         setBackground(Colores.FONDO);
         // Título
-        JLabel titulo = new JLabel("Libreria");//pon titulo de pagina
+        JLabel titulo = new JLabel("LIBRERIA");//pon titulo de pagina
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
         titulo.setFont(new Font("Segoe UI",Font.BOLD,26));
         titulo.setBorder(new EmptyBorder(15,10,15,10));
