@@ -8,7 +8,7 @@ import java.awt.event.*; //clics, teclas, cierre de venetana
 
 public class PanelLibros extends JPanel {
 //atributos de espacios para identificar un libro
-    private JTextField txtCodigo;
+    private JTextField txtCodigo; //espacio para escribir e lcodigo 
     private JTextField txtTitulo;
     private JTextField txtAutor;
     private JTextField txtCategoria;
@@ -21,7 +21,7 @@ public class PanelLibros extends JPanel {
     private JButton btnEliminar;
     private JButton btnLimpiar;
     private JTextArea areaCatalogo;
-    private JScrollPane scroll;
+    private JScrollPane scroll; //èpermite reocrrer 
     //Constructor
     public PanelLibros() {
     //constructor para poder iniciar funciones de la pantalla
