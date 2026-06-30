@@ -14,10 +14,10 @@ public class Main {
         javax.swing.SwingUtilities.invokeLater(() -> {
             VentanaPrincipal ventana = new VentanaPrincipal();
             // Guardar automáticamente al cerrar
-            ventana.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-            ventana.addWindowListener(new WindowAdapter() {
-                public void windowClosing(WindowEvent e) {
-                    GestorArchivos.guardarLibrosCSV(SistemaBiblioteca.biblioteca);
+            ventana.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE); //evita que la ventana se cierre 
+            ventana.addWindowListener(new WindowAdapter() {  //es un "escuchador oara detectar cuando el usuario inyenta cerrar"
+                public void windowClosing(WindowEvent e) { //acción de ejecutar antes de cerrar 
+                    GestorArchivos.guardarLibrosCSV(SistemaBiblioteca.biblioteca); //almacena los datos en un CSV
                     ventana.dispose();
                     System.exit(0);
                 }
