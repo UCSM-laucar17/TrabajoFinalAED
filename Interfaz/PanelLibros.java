@@ -29,16 +29,18 @@ public class PanelLibros extends JPanel {
     }
     private void iniciarComponentes() {
         setLayout(new BorderLayout(15,15));
-        setBackground(new Color(236,240,241));
+        setBackground(Colores.FONDO);
         // Título
-        JLabel titulo = new JLabel("Pagi404");//pon titulo de pagina
+        JLabel titulo = new JLabel("Libreria");//pon titulo de pagina
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
         titulo.setFont(new Font("Segoe UI",Font.BOLD,26));
         titulo.setBorder(new EmptyBorder(15,10,15,10));
+        titulo.setForeground(Colores.TEXTO);
         add(titulo,BorderLayout.NORTH);
+        
         // Panel Izquierdo
         JPanel panelFormulario = new JPanel();
-        panelFormulario.setBackground(Color.WHITE);
+        panelFormulario.setBackground(Colores.TARJETA);
         panelFormulario.setBorder(new TitledBorder("Datos del Libro"));
         panelFormulario.setPreferredSize(new Dimension(430,500));
         panelFormulario.setLayout(new GridBagLayout());
@@ -85,7 +87,7 @@ public class PanelLibros extends JPanel {
         c.gridy++;
         panelFormulario.add(new JLabel("Estado"),c);
         JPanel panelEstado = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        panelEstado.setBackground(Color.WHITE);
+        panelEstado.setBackground(Colores.TARJETA);
         rbDisponible = new JRadioButton("Disponible");
         rbPrestado = new JRadioButton("Prestado");
         rbDisponible.setBackground(Color.WHITE);
@@ -99,8 +101,8 @@ public class PanelLibros extends JPanel {
         c.gridx=1;
         panelFormulario.add(panelEstado,c);
         // Botones
-        JPanel panelBotones = new JPanel(new GridLayout(3,2,10,10));
-        panelBotones.setBackground(Color.WHITE);
+        JPanel panelBotones = new JPanel(new GridLayout(5,1,10,10));
+        panelBotones.setBackground(Colores.FONDO);
         btnRegistrar = crearBoton("Registrar");
         btnBuscar = crearBoton("Buscar");
         btnModificar = crearBoton("Modificar");
@@ -119,7 +121,7 @@ public class PanelLibros extends JPanel {
         add(panelFormulario,BorderLayout.WEST);
         // Panel Derecho
         JPanel panelLista = new JPanel(new BorderLayout());
-        panelLista.setBackground(Color.WHITE);
+        panelLista.setBackground(Colores.TARJETA);
         panelLista.setBorder(new TitledBorder("Catálogo de Libros"));
         areaCatalogo = new JTextArea();
         areaCatalogo.setEditable(false);
@@ -132,7 +134,7 @@ public class PanelLibros extends JPanel {
         areaCatalogo.setLineWrap(true);
         areaCatalogo.setWrapStyleWord(true);
         areaCatalogo.setCaretPosition(0);
-        areaCatalogo.setBackground(new Color(248,249,250));
+        areaCatalogo.setBackground(Colores.TARJETA);
         //hover es diseño de sobras en botones
         agregarHover(btnRegistrar);
         agregarHover(btnBuscar);
@@ -148,7 +150,9 @@ public class PanelLibros extends JPanel {
     private JButton crearBoton(String texto){
         JButton boton = new JButton(texto);
         boton.setFocusPainted(false);
-        boton.setBackground(new Color(52,152,219));
+        boton.setContentAreaFilled(false);
+        boton.setOpaque(true);
+        boton.setBackground(Colores.BOTON);
         boton.setForeground(Color.WHITE);
         boton.setFont(new Font("Segoe UI",Font.BOLD,14));
         boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -280,10 +284,23 @@ public class PanelLibros extends JPanel {
     private void agregarHover(JButton boton){ //mejora de botones en interfaz   
         boton.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
-                boton.setBackground(new Color(41,128,185));
+                boton.setBackground(Colores.BOTON_HOVER);
             }
             public void mouseExited(MouseEvent e) {
-                boton.setBackground(new Color(52,152,219));
+                boton.setBackground((Colores.BOTON));
+            }
+            public void mousePressed(MouseEvent e) {
+                // Cuando se mantiene presionado el botón
+                boton.setBackground(Colores.BOTON_PRESIONADO);
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                // Cuando se suelta el clic
+                if (boton.getBounds().contains(e.getPoint())) {
+                    boton.setBackground(Colores.BOTON_HOVER); // Si se soltó dentro
+                } else {
+                    boton.setBackground(Colores.BOTON); // Si se soltó fuera
+                }
             }
         });
     }
