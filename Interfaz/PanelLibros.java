@@ -1,10 +1,10 @@
 package Interfaz;
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
+import java.awt.*; //manejo de  graficos y cmponentes 
+import javax.swing.*; //botones paneles etquetas 
+import javax.swing.border.*; //importa clase para manejar bordes
 import Modelos.Libro;
 import Servicios.SistemaBiblioteca;
-import java.awt.event.*;
+import java.awt.event.*; //clics, teclas, cierre de venetana
 
 public class PanelLibros extends JPanel {
 //atributos de espacios para identificar un libro
