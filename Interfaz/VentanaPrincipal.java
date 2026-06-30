@@ -2,6 +2,8 @@ package Interfaz;
 import java.awt.*;
 import javax.swing.*;
 
+import java.awt.event.*;
+
 public class VentanaPrincipal extends JFrame{
     private JPanel panelMenu;
     private JPanel panelContenido;
@@ -24,23 +26,25 @@ public class VentanaPrincipal extends JFrame{
         panelMenu.setBackground(Colores.MENU);
         panelMenu.setPreferredSize(new Dimension(220,700));
         panelMenu.setLayout(null);
-        JLabel icono = new JLabel("📚");
-        icono.setBounds(80,10,60,40);
-        icono.setFont(new Font("Segoe UI Emoji",Font.PLAIN,30));
-        icono.setForeground(Color.WHITE);
+        ImageIcon iconoOriginal = new ImageIcon(
+                getClass().getResource("/logo.png"));
+        Image imagen = iconoOriginal.getImage().getScaledInstance(
+                120, 120, Image.SCALE_SMOOTH);
+        JLabel icono = new JLabel(new ImageIcon(imagen));
+        icono.setBounds(45, 25, 120, 120);
         panelMenu.add(icono);
         JLabel titulo=new JLabel("QUICK LIBRARY");
         titulo.setForeground(Color.WHITE);
         titulo.setFont(new Font("Segoe UI",Font.BOLD,20));
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
-        titulo.setBounds(10,50,190,30);
+        titulo.setBounds(10,170,190,30);
         panelMenu.add(titulo);
         btnLibros=new JButton("Libros");
         btnPrestamo=new JButton("Préstamos");
         btnReportes=new JButton("Reportes");
-        configurarBoton(btnLibros,120);
-        configurarBoton(btnPrestamo,190);
-        configurarBoton(btnReportes,260);
+        configurarBoton(btnLibros,270);
+        configurarBoton(btnPrestamo,340);
+        configurarBoton(btnReportes,410);
         panelMenu.add(btnLibros);
         panelMenu.add(btnPrestamo);
         panelMenu.add(btnReportes);
@@ -76,14 +80,30 @@ public class VentanaPrincipal extends JFrame{
         boton.setForeground(Color.WHITE);
         boton.setFocusPainted(false);
         boton.setBorderPainted(false);
+        boton.setContentAreaFilled(false);
+        boton.setOpaque(true);
         boton.setFont(new Font("Segoe UI",Font.BOLD,15));
         boton.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mouseEntered(java.awt.event.MouseEvent e){
-                boton.setBackground(new Color(41,128,185));
+                boton.setBackground(Colores.BOTON_HOVER);
             }
             public void mouseExited(java.awt.event.MouseEvent e){
                 boton.setBackground(Colores.BOTON);
             }
+            public void mousePressed(MouseEvent e) {
+                // Cuando se mantiene presionado el botón
+                boton.setBackground(Colores.BOTON_PRESIONADO);
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                // Cuando se suelta el clic
+                if (boton.getBounds().contains(e.getPoint())) {
+                    boton.setBackground(Colores.BOTON_HOVER); // Si se soltó dentro
+                } else {
+                    boton.setBackground(Colores.BOTON); // Si se soltó fuera
+                }
+            }
         });
+
     }
 }
