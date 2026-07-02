@@ -1,31 +1,33 @@
 package Interfaz;
-import java.awt.*;
-import javax.swing.*;
+import java.awt.*; //es la primera liberia grafica esa componetes nativos se iso botones menus
+import javax.swing.*; //libreria ligera que no depende del sistema , personaliza la ventana principal 
 
 import java.awt.event.*;
 
-public class VentanaPrincipal extends JFrame{
+public class VentanaPrincipal extends JFrame{ //ventana principal herredada de swing
+    //atributos
     private JPanel panelMenu;
-    private JPanel panelContenido;
-    private CardLayout card;
-    private JButton btnLibros;
+    private JPanel panelContenido; //panel principal
+    private CardLayout card; //cambiar entre pantallas
+    private JButton btnLibros; //botones del menu 
     private JButton btnPrestamo;
     private JButton btnReportes;
+    //constructor
     public VentanaPrincipal(){
         iniciarComponentes();
         setVisible(true);
     }
-    private void iniciarComponentes(){
-        setTitle("Quick Library");
+    private void iniciarComponentes(){  
+        setTitle("Quick Library"); //titulo de la ventana
         setSize(1200,700);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null); //centra la pantalla
+        setDefaultCloseOperation(EXIT_ON_CLOSE); //cierra la aplicacion al salir
         setLayout(new BorderLayout());
         //Menu inicio
         panelMenu=new JPanel();
         panelMenu.setBackground(Colores.MENU);
         panelMenu.setPreferredSize(new Dimension(220,700));
-        panelMenu.setLayout(null);
+        panelMenu.setLayout(null); //posiciona elementos por coordenadas
         ImageIcon iconoOriginal = new ImageIcon(
                 getClass().getResource("/logo.png"));
         Image imagen = iconoOriginal.getImage().getScaledInstance(
